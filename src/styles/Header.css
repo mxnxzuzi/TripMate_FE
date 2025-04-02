@@ -1,0 +1,38 @@
+:root {
+    --main-color: #2346FF;
+    --text-color: #545454;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #ffffff;
+    //border-bottom: 1px solid #e0e0e0;
+    //box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    font-family: 'Pretendard', sans-serif;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--main-color);
+    text-decoration: none;
+  }
+  
+  .auth-links {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .auth-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.2s;
+  }
+  
+  .auth-links a:hover {
+    color: var(--main-color);
+  }
+  

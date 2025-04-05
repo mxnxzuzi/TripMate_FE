@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/DestinationSelectPage.css'; // 스타일 파일 경로에 맞게 수정
+import '../styles/DestinationSelectPage.css'; 
+import { useNavigate } from 'react-router-dom';
 
 const destinations = {
   국내: ["제주", "서울", "가평", "부산", "강릉", "목포", "인천", "속초", "경주", "여수", "양양", "전주", "포항", "대구", "울산", "거제"],
@@ -13,7 +14,13 @@ const destinations = {
 
 const DestinationSelectPage = () => {
   const [selectedCountry, setSelectedCountry] = useState('국내');
+  const navigate = useNavigate();
 
+  const handleNext = () => {
+    navigate('/travel-type'); 
+  };
+  const [selectedRegion, setSelectedRegion] = useState('');
+  
   return (
     <div className="destination-page">
 
@@ -36,9 +43,13 @@ const DestinationSelectPage = () => {
         {/* 오른쪽: 지역 리스트 */}
         <div className="region-list">
           {destinations[selectedCountry].map((region) => (
-            <div key={region} className="region-item">
-              {region}
-            </div>
+          <div
+          key={region}
+          className={`region-item ${selectedRegion === region ? 'selected' : ''}`}
+          onClick={() => setSelectedRegion(region)}
+          >
+          {region}
+        </div>
           ))}
         </div>
       </div>
@@ -49,7 +60,7 @@ const DestinationSelectPage = () => {
         placeholder="🔍 더 많은 여행지를 찾아보세요"
       />
 
-      <button className="next-button">다음</button>
+      <button className="next-button" onClick={handleNext}>다음</button>
     </div>
   );
 };

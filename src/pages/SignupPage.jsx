@@ -9,9 +9,10 @@ const SignupPage = () => {
       <h2 className="signup-title">회원가입</h2>
 
       <form className="signup-form">
-        <input type="text" placeholder="이름" className="signup-input" />
         <input type="email" placeholder="이메일" className="signup-input" />
         <input type="password" placeholder="비밀번호" className="signup-input" />
+        <input type="text" placeholder="이름" className="signup-input" />
+        <input type="text" placeholder="닉네임" className="signup-input" />
         <button type="submit" className="signup-button">회원가입</button>
       </form>
 

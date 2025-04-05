@@ -9,6 +9,8 @@ import TravelTypeSelectPage from './pages/TravelTypeSelectPage';
 import TravelDatePage from './pages/TravelDatePage';
 import LoadingPage from './pages/LoadingPage';
 import RecommendationPage from './pages/RecommendationPage';
+import UserLayout from './layouts/UserLayout';
+import test from './pages/test';
 
 function App() {
   return (
@@ -28,6 +30,10 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/loading" element={<LoadingPage />} />
+        </Route>
+        {/* Header after login 페이지들 */}
+        <Route element={<UserLayout/>}>
+        <Route path="/test" element={<test />} />
         </Route>
       </Routes>
     </Router>

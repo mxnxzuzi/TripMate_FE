@@ -1,0 +1,87 @@
+:root {
+    --main-color: #2346FF;
+    --gray-color: #aaa;
+    --bg-color: #f9f9f9;
+    --card-radius: 16px;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-top: 70px;
+    margin-right: 150px;
+    z-index: 1000;
+  }
+  
+  .profile-card {
+    background: var(--bg-color);
+    border-radius: var(--card-radius);
+    padding: 32px 36px;
+    width: 380px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .profile-card h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0 0 12px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .profile-card p {
+    font-size: 16px;
+    color: var(--gray-color);
+    margin: 4px 0;
+    word-break: break-all;
+  }
+  
+  .profile-card hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 24px 0;
+  }
+  
+  .button-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+  }
+
+  .button-group button {
+    background: var(--main-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .button-group button:hover {
+    background: #1c3bd1;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .close-btn:hover {
+    color: #000;
+  }
+  

@@ -1,0 +1,173 @@
+:root {
+    --main-color: #2346FF;
+    --hover-color: #1c3bd1;
+  }
+  
+  .plan-page {
+    font-family: 'Pretendard', sans-serif;
+    max-width: 70vw;
+    margin: 0 auto;
+  }
+  
+  .plan-title-box {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    flex-direction: column;
+  }
+  
+  .plan-title-box .title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 0px;
+  }
+  
+  .plan-title-box .info {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.5;
+    margin: 0px;
+    margin-top: 5px;
+  }
+  
+  .map-box {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+  }
+  
+  
+  .day-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .tab {
+    border: none;
+    background-color: #eee;
+    padding: 6px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .tab.active {
+    background-color: var(--main-color);
+    color: white;
+  }
+  
+  .tab.plus {
+    background-color: #eee;
+  }
+  
+  .schedule-box {
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 8px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  
+  .schedule-item {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-left: 50px;
+  }
+  
+  .schedule-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 13px; /* circle 중심 기준 */
+    width: 1.5px;
+    height: 100%;
+    background-color: #ccc;
+    z-index: 0;
+  }
+  
+  .circle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    text-align: center;
+    line-height: 28px;
+    font-weight: 600;
+  }
+  
+  .time {
+    position: absolute;
+    left: 0;
+    top: 33px;
+    font-size: 13px;
+    color: gray;
+    background-color: white;
+  }
+  
+  .place {
+    margin-left: 16px;
+    margin-top: -2px;
+  }
+  
+  .schedule-item .type {
+    font-size: 14px;
+    color: #999;
+    margin: 4px 0;
+  }
+  
+  .schedule-item .desc {
+    font-size: 13px;
+    color: #555;
+    margin: 0px;
+    margin-bottom: 30px;
+  }
+  
+  .btn-box {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  
+  .btn {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: var(--hover-color);
+  }
+  
+  /* Scroll bar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2); 
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4); 
+}

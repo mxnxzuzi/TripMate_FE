@@ -13,6 +13,7 @@ const ProfileCard = ({ onClose }) => {
         <p className="nickname">솜솜잉 ✏️</p>
         <p className="email">doungduk@naver.com ✏️</p>
         <p className="id">ddong1234 ✏️</p>
+        <button className='deleteBtn'>계정삭제</button>
         <hr />
         <div className="button-group">
           <button>내 코스</button>

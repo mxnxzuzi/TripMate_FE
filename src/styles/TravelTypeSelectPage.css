@@ -1,0 +1,71 @@
+:root {
+    --main-color: #2346FF;
+    --hover-color : #1c3bd1;
+  }
+.travel-type-page {
+    max-width: 50vw;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: 'Pretendard', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .title {
+    font-size: 25px;
+    font-weight: 600;
+    margin: 35px 0 25px;
+    text-align: left;
+    width: 100%;
+    margin-top: 15px;
+  }
+  
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 20px 20px;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+  
+  .select-button {
+    padding: 12px;
+    font-size: 17px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .select-button.selected {
+    background-color: white;
+    color: var(--main-color);
+    border: 1.5px solid var(--main-color);
+    font-weight: 500;
+  }
+  
+  .select-button:hover {
+    background-color: #e6e6e6;
+  }
+  
+
+  
+  .next-button {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 12px 36px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 32px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .next-button:hover {
+    background-color: var(--hover-color);
+  }
+  

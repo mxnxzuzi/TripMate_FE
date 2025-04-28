@@ -1,0 +1,113 @@
+.posting-container {
+  display: flex;
+  justify-content: center; /* 가운데 정렬 */
+  padding: 40px 100px;
+  font-family: 'Arial', sans-serif;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px; /* 더 넓게 */
+  gap: 16px;
+}
+
+.post-textarea {
+  width: 100%;
+  height: 320px;
+  background: #f0f0f0;
+  border: none;
+  resize: none;
+  padding: 14px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.dropdown {
+  width: 360px;
+  height: 48px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+
+.image-upload {
+  width: 360px;
+  padding: 6px;
+  font-size: 15px;
+  background-color: white;
+  border: 1px solid #aaa;
+  cursor: pointer;
+}
+
+.preview-list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.preview-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fafafa;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.preview-thumbnail {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.file-name {
+  flex-grow: 1;
+  font-size: 14px;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #999;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  color: red;
+}
+
+.button-group {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.submit-btn,
+.cancel-btn {
+  width: 140px; /* 버튼 넓이를 더 키움 */
+  height: 40px;
+  background-color: #2d5fff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-btn:hover,
+.cancel-btn:hover {
+  opacity: 0.9;
+}

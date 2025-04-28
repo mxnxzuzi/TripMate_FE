@@ -10,6 +10,9 @@ import TravelDatePage from './pages/TravelDatePage';
 import LoadingPage from './pages/LoadingPage';
 import RecommendationPage from './pages/RecommendationPage';
 import UserLayout from './layouts/UserLayout';
+import PostsPage from './pages/PostsPage';
+import DetailedPostPage from './pages/DetailedPostPage';
+import PostingPage from './pages/PostingPage';
 import test from './pages/test';
 
 function App() {
@@ -23,6 +26,9 @@ function App() {
           <Route path="/travel-type" element={<TravelTypeSelectPage />} />
           <Route path="/travel-date" element={<TravelDatePage />} />
           <Route path="/RecommendationPlan_noLogin" element={<RecommendationPage />} />
+          <Route path="/posts" element={<PostsPage />} />
+          <Route path="/consumers/:consumerId/posts" element={<PostsPage />} />
+          <Route path="/posts/:postId" element={<DetailedPostPage />} />
       </Route>
 
         {/* Header 없는 페이지들 */}
@@ -34,6 +40,8 @@ function App() {
         {/* Header after login 페이지들 */}
         <Route element={<UserLayout/>}>
         <Route path="/test" element={<test />} />
+        <Route path="/posts/posting" element={<PostingPage isEdit={false} />} />
+        <Route path="/posts/:postId/edit" element={<PostingPage isEdit={true} />} />
         </Route>
       </Routes>
     </Router>

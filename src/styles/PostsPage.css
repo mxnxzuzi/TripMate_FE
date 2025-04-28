@@ -1,0 +1,129 @@
+/* PostList.css */
+.post-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .post-header {
+    display: flex;
+    justify-content: flex-end; /* ← 오른쪽으로 정렬 */
+    align-items: center;
+  }
+  
+  .title {
+    color: #007bff;
+    font-size: 24px;
+  }
+  
+  .auth-select {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .auth-select select {
+    width: 150px;
+    height: 25px;
+  }
+  
+  .btn, .btn-outline {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  .btn-outline:hover, .btn:hover {
+    opacity: 0.9;
+  }
+  
+  .post-list {
+    margin-top: 20px;
+  }
+
+  .post-item {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .username {
+    font-weight: bold;
+  }
+  
+  .image-grid {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .post-image {
+    width: 497px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px
+  }
+  
+  .post-text {
+    margin-top: 10px;
+  }
+  
+  .heart-icon {
+    align-self: flex-end;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .post-content {
+    display: flex;
+    flex-direction: column; /* 세로로 정렬 */
+  }
+  
+  .post-text {
+    margin-top: 10px;
+  }
+
+  .floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: royalblue;
+    color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 1000;
+  }
+  
+  .floating-btn:hover {
+    background-color: #2c4fd6;
+  }
+  

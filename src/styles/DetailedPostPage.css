@@ -1,4 +1,8 @@
 /* DetailedPostPage.css */
+:root {
+  --main-color: #2346FF;
+  --hover-color: #1c3bd1;
+}
 
 .detailed-post-page {
   padding: 20px 50px;
@@ -78,7 +82,7 @@
 }
 
 .tab.active {
-  background: royalblue;
+  background: var(--main-color);
   color: white;
 }
 
@@ -97,7 +101,7 @@
 .circle {
   width: 24px;
   height: 24px;
-  background: royalblue;
+  background: var(--main-color);
   color: white;
   font-size: 14px;
   text-align: center;
@@ -142,7 +146,7 @@
 .delete-btn {
   width: 120px; /* 버튼 넓이 통일 */
   height: 48px;
-  background-color: royalblue;
+  background-color: var(--main-color);
   color: white;
   border: none;
   border-radius: 8px;
@@ -152,7 +156,7 @@
 
 /* 수정 버튼 색 */
 .edit-btn {
-  background-color: royalblue;
+  background-color: var(--main-color);
 }
 
 /* 삭제 버튼 색 */

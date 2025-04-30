@@ -1,4 +1,8 @@
 /* PostList.css */
+:root {
+  --main-color: #2346FF;
+}
+
 .post-container {
     padding: 20px;
     font-family: Arial, sans-serif;
@@ -11,7 +15,7 @@
   }
   
   .title {
-    color: #007bff;
+    color: var(--main-color);
     font-size: 24px;
   }
   
@@ -35,7 +39,7 @@
   }
   
   .btn {
-    background-color: #007bff;
+    background-color: var(--main-color);
     color: white;
     border: none;
   }
@@ -111,7 +115,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: royalblue;
+    background-color: var(--main-color);
     color: white;
     border: none;
     display: flex;

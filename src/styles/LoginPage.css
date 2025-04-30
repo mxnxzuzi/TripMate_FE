@@ -1,6 +1,7 @@
 :root {
     --main-color: #2346FF;
     --hover-color : #1c3bd1;
+    --error-color : rgb(242, 0, 0);
   }
   
   .login-container {
@@ -106,3 +107,6 @@
     cursor: pointer;
   }
   
+  .login-error {
+    color: var(--error-color);
+  }

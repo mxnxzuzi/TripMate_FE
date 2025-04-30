@@ -4,7 +4,7 @@ import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import '../styles/DetailedPostPage.css';
 import { Heart } from 'lucide-react';
 
-// ✨ 더미 데이터 (컴포넌트 안에서 선언)
+// 더미 데이터
 const dummyPost = {
   id: 1,
   user: {

@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import HeaderAfterLogin from '../components/HeaderAfterLogin';
 
-const UserLayout = () => {
+const UserLayout = ({ setIsLoggedIn, userInfo }) => {
   return (
     <>
-      <HeaderAfterLogin />  
+      <HeaderAfterLogin setIsLoggedIn={setIsLoggedIn} userInfo={userInfo} />
       <main>
         <Outlet />
       </main>

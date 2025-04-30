@@ -43,6 +43,7 @@
     font-weight: 600;
     margin-bottom: 18px;
     margin-top: 80px;
+    color: var(--main-color);
   }
   
   .custom-box {

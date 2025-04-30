@@ -1,6 +1,9 @@
 :root {
-    --main-color: #2346FF;
-  }
+  --main-color: #2346FF;
+  --hover-color : #1c3bd1;
+  --error-color : rgb(242, 0, 0);
+}
+
   
   .signup-container {
     max-width: 400px;
@@ -105,3 +108,6 @@
     cursor: pointer;
   }
   
+  .signup-message {
+    color: var(--error-color);
+  }

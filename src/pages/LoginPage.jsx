@@ -73,7 +73,12 @@ const LoginPage = ({ setIsLoggedIn, setUserInfo }) => {
       </div>
 
       <div className="social-login">
-        <img src="/images/google.png" alt="Google 로그인" />
+      <img
+          src="/images/google.png"
+          alt="Google 로그인"
+          onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/google'}
+          style={{ cursor: 'pointer' }}
+      />
         <img src="/images/naver.png" alt="Naver 로그인" />
         <img src="/images/kakao.png" alt="Kakao 로그인" />
       </div>

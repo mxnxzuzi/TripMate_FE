@@ -1,0 +1,49 @@
+.nickname-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f7fc;
+  }
+  
+  .nickname-box {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 500px;
+    margin-bottom: 8vh;
+    height: 250px;
+  }
+  
+  .nickname-box h2 {
+    margin-bottom: 40px;
+    color: #2346ff;
+    font-size: 24px;
+  }
+  
+  .nickname-input {
+    width: 80%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+  }
+  
+  .nickname-button {
+    background-color: #2346ff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .nickname-button:hover {
+    background-color: #1c3bd1;
+  }
+  

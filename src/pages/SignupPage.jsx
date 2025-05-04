@@ -103,9 +103,24 @@ const SignupPage = () => {
       </div>
 
       <div className="social-signup">
-        <img src="/images/google.png" alt="Google 회원가입" />
-        <img src="/images/naver.png" alt="Naver 회원가입" />
-        <img src="/images/kakao.png" alt="Kakao 회원가입" />
+      <img
+            src="/images/google.png"
+            alt="Google 로그인"
+            onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/google'}
+            style={{ cursor: 'pointer' }}
+        />
+        <img
+            src="/images/naver.png"
+            alt="Naver 로그인"
+            onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/naver'}
+            style={{ cursor: 'pointer' }}
+        />
+        <img
+            src="/images/kakao.png"
+            alt="Kakao 로그인"
+            onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/kakao'}
+            style={{ cursor: 'pointer' }}
+        />
       </div>
     </div>
   );

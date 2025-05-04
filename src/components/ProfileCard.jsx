@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import '../styles/ProfileCard.css';
 
-const ProfileCard = ({ onClose, userInfo }) => {
+const ProfileCard = ({ onClose }) => {
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    axios.get("http://localhost:8080/consumers/me", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      setUserInfo(res.data);
+    })
+    .catch((err) => {
+      console.error("❌ 사용자 정보 가져오기 실패", err);
+    });
+  }, []);
+
+  if (!userInfo) return null;
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="profile-card" onClick={(e) => e.stopPropagation()}>
         
-        {/* 닫기 버튼 추가 */}
         <button className="close-btn" onClick={onClose}>×</button>
 
         <h2>{userInfo.nickname} ✏️</h2>
         <p className="email">{userInfo.email} ✏️</p>
-        <p className="nickname">{userInfo.name}  ✏️</p>
-        {/*<p className="id">식별자 id: {userInfo.id} ✏️</p> */}
-      
+        <p className="nickname">{userInfo.name} ✏️</p>
+
         <button className='deleteBtn'>계정삭제</button>
         <hr />
         <div className="button-group">

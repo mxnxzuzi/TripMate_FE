@@ -15,6 +15,7 @@ import PostsPage from './pages/PostsPage';
 import DetailedPostPage from './pages/DetailedPostPage';
 import PostingPage from './pages/PostingPage';
 import Test from './pages/Test';
+import NicknameSettingPage from './pages/NicknameSettingPage';
 import axios from "axios";
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
           <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/loading" element={<LoadingPage />} />
+          <Route path="/nickname-setting" element={<NicknameSettingPage />} />
         </Route>
 
         {/* 나머지 페이지들 (isLoggedIn 여부에 따라 MainLayout 또는 UserLayout) */}

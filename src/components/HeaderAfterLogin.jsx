@@ -11,7 +11,7 @@ const HeaderAfterLogin = ({ setIsLoggedIn, userInfo }) => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         setIsLoggedIn(false);
-        alert('로그아웃 되었습니다!');
+        //alert('로그아웃 되었습니다!');
         navigate('/');
     };
 

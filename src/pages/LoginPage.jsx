@@ -23,9 +23,10 @@ const LoginPage = ({ setIsLoggedIn, setUserInfo }) => {
         password,
       });
 
-      const { name, nickname, email: userEmail, id } = response.data;
+      const { name, nickname, email: userEmail, id, token, nicknameSet } = response.data;
 
       console.log('로그인 성공:', response.data);
+      localStorage.setItem("token", token);
       setIsLoggedIn(true); 
       setUserInfo({ name, nickname, email: userEmail, id });
       navigate('/');

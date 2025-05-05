@@ -24,9 +24,12 @@ function App() {
   
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
+    const tokenFromURL = params.get("token");
+    const tokenFromStorage = localStorage.getItem("token");
   
-    if (token) {
+    const token = tokenFromURL || tokenFromStorage;
+  
+    if (token && token.split('.').length === 3) {
       localStorage.setItem("token", token);
   
       axios.get("http://localhost:8080/consumers/me", {
@@ -35,16 +38,16 @@ function App() {
       .then((res) => {
         setUserInfo(res.data);
         setIsLoggedIn(true);
-  
-        // ✅ URL 깔끔하게 만들기 위해 ?token= 제거
         window.history.replaceState({}, document.title, "/");
       })
       .catch(() => {
         alert("사용자 정보를 불러올 수 없습니다.");
         localStorage.removeItem("token");
+        setIsLoggedIn(false);
       });
     }
   }, []);
+  
   
 
   const fetchUserInfo = async (token) => {

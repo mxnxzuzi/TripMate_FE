@@ -29,9 +29,9 @@ const ProfileCard = ({ onClose }) => {
         
         <button className="close-btn" onClick={onClose}>×</button>
 
-        <h2>{userInfo.nickname} ✏️</h2>
-        <p className="email">{userInfo.email} ✏️</p>
-        <p className="nickname">{userInfo.name} ✏️</p>
+        <h2>{userInfo.nickname}</h2>
+        <p className="email">{userInfo.email}</p>
+        <p className="nickname">{userInfo.name}</p>
 
         <button className='deleteBtn'>계정삭제</button>
         <hr />

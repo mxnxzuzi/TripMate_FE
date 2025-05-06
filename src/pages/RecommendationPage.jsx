@@ -83,7 +83,7 @@ const RecommendationPage = () => {
       <div className="btn-box">
         <button className="btn">내 일정으로 저장</button>
         <button className="btn" onClick={() => navigate('/loading')}>새로운 추천받기</button>
-        <button className="btn">동행자 초대하기</button>
+        <button className="btn" onClick={() => navigate('/invite')}>동행인 초대하기</button>
       </div>
     </div>
   );

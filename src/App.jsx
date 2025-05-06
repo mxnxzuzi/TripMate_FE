@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import AuthLayout from './layouts/AuthLayout';
@@ -15,58 +15,12 @@ import PostsPage from './pages/PostsPage';
 import DetailedPostPage from './pages/DetailedPostPage';
 import PostingPage from './pages/PostingPage';
 import Test from './pages/Test';
-import axios from "axios";
+import InvitePage from './pages/InvitePage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState(null); 
   
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
-  
-    if (token) {
-      localStorage.setItem("token", token);
-  
-      axios.get("http://localhost:8080/consumers/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setUserInfo(res.data);
-        setIsLoggedIn(true);
-  
-        // ✅ URL 깔끔하게 만들기 위해 ?token= 제거
-        window.history.replaceState({}, document.title, "/");
-      })
-      .catch(() => {
-        alert("사용자 정보를 불러올 수 없습니다.");
-        localStorage.removeItem("token");
-      });
-    }
-  }, []);
-  
-
-  const fetchUserInfo = async (token) => {
-    try {
-      const res = await fetch("http://localhost:8080/consumers/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!res.ok) throw new Error("유저 정보 불러오기 실패");
-
-      const data = await res.json();
-      setUserInfo(data);
-    } catch (err) {
-      console.error("사용자 정보 가져오기 실패:", err);
-      localStorage.removeItem("token");
-      setIsLoggedIn(false);
-      setUserInfo(null);
-    }
-  };
-
-
   return (
     <Router>
       <Routes>
@@ -75,6 +29,7 @@ function App() {
           <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/loading" element={<LoadingPage />} />
+          <Route path="/invite" element={<InvitePage />} />
         </Route>
 
         {/* 나머지 페이지들 (isLoggedIn 여부에 따라 MainLayout 또는 UserLayout) */}

@@ -14,7 +14,6 @@ import UserLayout from './layouts/UserLayout';
 import PostsPage from './pages/PostsPage';
 import DetailedPostPage from './pages/DetailedPostPage';
 import PostingPage from './pages/PostingPage';
-import Test from './pages/Test';
 import NicknameSettingPage from './pages/NicknameSettingPage';
 import InvitePage from './pages/InvitePage';
 import axios from "axios";
@@ -93,7 +92,6 @@ function App() {
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/consumers/:consumerId/posts" element={<PostsPage />} />
           <Route path="/posts/:postId" element={<DetailedPostPage />} />
-          <Route path="/test" element={<Test />} />
           <Route path="/posts/posting" element={<PostingPage isEdit={false} />} />
           <Route path="/posts/:postId/edit" element={<PostingPage isEdit={true} />} />
           <Route path="/rooms/:roomId/members" element={<InvitePage />} />

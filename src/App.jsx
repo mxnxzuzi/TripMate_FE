@@ -15,6 +15,7 @@ import PostsPage from './pages/PostsPage';
 import DetailedPostPage from './pages/DetailedPostPage';
 import PostingPage from './pages/PostingPage';
 import Test from './pages/Test';
+import NicknameSettingPage from './pages/NicknameSettingPage';
 import axios from "axios";
 
 function App() {
@@ -23,9 +24,12 @@ function App() {
   
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
+    const tokenFromURL = params.get("token");
+    const tokenFromStorage = localStorage.getItem("token");
   
-    if (token) {
+    const token = tokenFromURL || tokenFromStorage;
+  
+    if (token && token.split('.').length === 3) {
       localStorage.setItem("token", token);
   
       axios.get("http://localhost:8080/consumers/me", {
@@ -34,16 +38,16 @@ function App() {
       .then((res) => {
         setUserInfo(res.data);
         setIsLoggedIn(true);
-  
-        // ✅ URL 깔끔하게 만들기 위해 ?token= 제거
         window.history.replaceState({}, document.title, "/");
       })
       .catch(() => {
         alert("사용자 정보를 불러올 수 없습니다.");
         localStorage.removeItem("token");
+        setIsLoggedIn(false);
       });
     }
   }, []);
+  
   
 
   const fetchUserInfo = async (token) => {
@@ -75,6 +79,7 @@ function App() {
           <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/loading" element={<LoadingPage />} />
+          <Route path="/nickname-setting" element={<NicknameSettingPage />} />
         </Route>
 
         {/* 나머지 페이지들 (isLoggedIn 여부에 따라 MainLayout 또는 UserLayout) */}

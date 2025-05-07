@@ -23,9 +23,10 @@ const LoginPage = ({ setIsLoggedIn, setUserInfo }) => {
         password,
       });
 
-      const { name, nickname, email: userEmail, id } = response.data;
+      const { name, nickname, email: userEmail, id, token, nicknameSet } = response.data;
 
       console.log('로그인 성공:', response.data);
+      localStorage.setItem("token", token);
       setIsLoggedIn(true); 
       setUserInfo({ name, nickname, email: userEmail, id });
       navigate('/');
@@ -73,14 +74,24 @@ const LoginPage = ({ setIsLoggedIn, setUserInfo }) => {
       </div>
 
       <div className="social-login">
-      <img
-          src="/images/google.png"
-          alt="Google 로그인"
-          onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/google'}
-          style={{ cursor: 'pointer' }}
-      />
-        <img src="/images/naver.png" alt="Naver 로그인" />
-        <img src="/images/kakao.png" alt="Kakao 로그인" />
+        <img
+            src="/images/google.png"
+            alt="Google 로그인"
+            onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/google'}
+            style={{ cursor: 'pointer' }}
+        />
+        <img
+            src="/images/naver.png"
+            alt="Naver 로그인"
+            onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/naver'}
+            style={{ cursor: 'pointer' }}
+        />
+        <img
+            src="/images/kakao.png"
+            alt="Kakao 로그인"
+            onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/kakao'}
+            style={{ cursor: 'pointer' }}
+        />
       </div>
     </div>
   );

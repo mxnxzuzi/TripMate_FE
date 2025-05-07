@@ -16,6 +16,7 @@ import DetailedPostPage from './pages/DetailedPostPage';
 import PostingPage from './pages/PostingPage';
 import Test from './pages/Test';
 import NicknameSettingPage from './pages/NicknameSettingPage';
+import InvitePage from './pages/InvitePage';
 import axios from "axios";
 
 function App() {
@@ -95,6 +96,7 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/posts/posting" element={<PostingPage isEdit={false} />} />
           <Route path="/posts/:postId/edit" element={<PostingPage isEdit={true} />} />
+          <Route path="/rooms/:roomId/members" element={<InvitePage />} />
         </Route>
 
         {/* 잘못된 경로면 메인으로 리다이렉트 */}

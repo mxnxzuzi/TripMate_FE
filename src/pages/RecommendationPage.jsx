@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import '../styles/RecommendationPage.css';
 
+
+//더미데이터
 const dummyData = {
   1: [
     { time: '09:00', name: '롯데월드', type: '관광 명소', desc: '대한민국 대표 테마파크' },
@@ -19,6 +21,8 @@ const dummyData = {
     { time: '18:00', name: '더현대 서울', type: '쇼핑몰', desc: '최신 트렌드의 패션과 푸드를 한곳에서 경험할 수 있는 핫플레이스' },
   ],  
 };
+
+const roomId = "123";
 
 const mapContainerStyle = {
   width: '100%',
@@ -83,7 +87,7 @@ const RecommendationPage = () => {
       <div className="btn-box">
         <button className="btn">내 일정으로 저장</button>
         <button className="btn" onClick={() => navigate('/loading')}>새로운 추천받기</button>
-        <button className="btn">동행자 초대하기</button>
+        <button className="btn" onClick={() => navigate(`/rooms/${roomId}/members`)}>동행자 초대하기</button>
       </div>
     </div>
   );

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/ProfileCard.css';
 
 const ProfileCard = ({ onClose }) => {
   const [userInfo, setUserInfo] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -21,6 +23,7 @@ const ProfileCard = ({ onClose }) => {
     });
   }, []);
 
+  
   if (!userInfo) return null;
 
   return (

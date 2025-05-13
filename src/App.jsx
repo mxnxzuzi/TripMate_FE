@@ -93,7 +93,7 @@ function App() {
           <Route path="/consumers/:consumerId/posts" element={<PostsPage />} />
           <Route path="/posts/:postId" element={<DetailedPostPage />} />
           <Route path="/posts/posting" element={<PostingPage isEdit={false} />} />
-          <Route path="/posts/:postId/edit" element={<PostingPage isEdit={true} />} />
+          <Route path="/posts/:postId/edit" element={<PostingPage isEdit={true} />} />  
           <Route path="/rooms/:roomId/members" element={<InvitePage />} />
         </Route>
 

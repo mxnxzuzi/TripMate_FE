@@ -17,6 +17,7 @@ import PostingPage from './pages/PostingPage';
 import NicknameSettingPage from './pages/NicknameSettingPage';
 import InvitePage from './pages/InvitePage';
 import axios from "axios";
+import RoomPage from "./pages/RoomPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -93,8 +94,9 @@ function App() {
           <Route path="/consumers/:consumerId/posts" element={<PostsPage />} />
           <Route path="/posts/:postId" element={<DetailedPostPage />} />
           <Route path="/posts/posting" element={<PostingPage isEdit={false} />} />
-          <Route path="/posts/:postId/edit" element={<PostingPage isEdit={true} />} />
+          <Route path="/posts/:postId/edit" element={<PostingPage isEdit={true} />} />  
           <Route path="/rooms/:roomId/members" element={<InvitePage />} />
+          <Route path="/rooms/:roomId" element={<RoomPage />} />
         </Route>
 
         {/* 잘못된 경로면 메인으로 리다이렉트 */}

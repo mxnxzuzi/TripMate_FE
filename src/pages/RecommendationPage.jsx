@@ -100,6 +100,9 @@ const RecommendationPage = () => {
     }
   };
 
+  const [editingPlace, setEditingPlace] = useState(null); // 클릭한 장소 정보
+  const [isEditOpen, setIsEditOpen] = useState(false); // 수정 창 표시 여부
+
   return (
     <div className="plan-page">
       <div className="plan-title-box">
@@ -183,7 +186,6 @@ const RecommendationPage = () => {
       <div className="btn-box">
         <button className="btn" onClick={handleSavePlan}>내 일정으로 저장</button>
         <button className="btn" onClick={() => navigate('/loading')}>새로운 추천받기</button>
-        {/* <button className="btn" onClick={() => navigate('/share')}>동행자 초대하기</button> */}
       </div>
     </div>
   );

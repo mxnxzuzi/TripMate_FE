@@ -1,22 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PlanContext from '../context/PlanContext';
 import '../styles/TravelTypeSelectPage.css';
 
-const companionOptions = [
-  '혼자', '친구와', '연인과', '배우자와', '아이와',
-  '부모님과', '가족과', '기타'
-];
+const companionEnumMap = {
+  '혼자': 'ALONE',
+  '친구와': 'FRIEND',
+  '연인과': 'COUPLE',
+  '배우자와': 'SPOUSE',
+  '아이와': 'CHILD',
+  '부모님과': 'PARENTS',
+  '가족과': 'FAMILY',
+  '기타': 'OTHER'
+};
 
-const styleOptions = [
-  '힐링 여행', 'SNS 핫플레이스', '맛집 탐방', '지역 축제',
-  '액티비티 여행', '쇼핑 · 도시 여행', '해양 스포츠', '로드 트립',
-  '자연 탐험', '문화 · 역사', '유명 관광지'
-];
+const styleEnumMap = {
+  '힐링 여행': 'HEALING',
+  'SNS 핫플레이스': 'HOT_PLACE',
+  '맛집 탐방': 'FOOD_TOUR',
+  '지역 축제': 'LOCAL_FESTIVAL',
+  '액티비티 여행': 'ACTIVITY',
+  '쇼핑 · 도시 여행': 'CITY_TOUR',
+  '해양 스포츠': 'MARINE_SPORTS',
+  '로드 트립': 'ROAD_TRIP',
+  '자연 탐험': 'NATURE',
+  '문화 · 역사': 'CULTURE_HISTORY',
+  '유명 관광지': 'TOURIST_SPOT'
+};
+
+const companionOptions = Object.keys(companionEnumMap);
+const styleOptions = Object.keys(styleEnumMap);
 
 const TravelTypeSelectPage = () => {
   const [selectedCompanion, setSelectedCompanion] = useState('');
   const [selectedStyles, setSelectedStyles] = useState([]);
   const navigate = useNavigate();
+  const { setPlanData } = useContext(PlanContext);
 
   const handleStyleClick = (style) => {
     if (selectedStyles.includes(style)) {
@@ -27,8 +46,15 @@ const TravelTypeSelectPage = () => {
   };
 
   const handleNext = () => {
-    // 조건 추가 가능
-    navigate('/travel-date'); // 다음 페이지 경로로 수정
+    const companionEnum = companionEnumMap[selectedCompanion] || '';
+    const styleEnums = selectedStyles.map(style => styleEnumMap[style]);
+
+    setPlanData(prev => ({
+      ...prev,
+      companion: companionEnum,
+      style: styleEnums
+    }));
+    navigate('/travel-date');
   };
 
   return (

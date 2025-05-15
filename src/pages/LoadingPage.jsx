@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/LoadingPage.css';
 import { LoadScript } from '@react-google-maps/api';
+import PlanContext from '../context/PlanContext';
+import axios from 'axios';
+import '../styles/LoadingPage.css';
 
 const LoadingPage = () => {
+  const { planData } = useContext(PlanContext);
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
 
   // 로딩바 증가
-  useState(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
@@ -22,13 +25,20 @@ const LoadingPage = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleLoad = async () => {
+    try {
+      const response = await axios.post('http://localhost:8080/plans', planData);
+      setTimeout(() => {
+        navigate('/RecommendationPlan', { state: { plan: response.data.result } });
+      }, 3000);
+    } catch (error) {
+      console.error('추천 실패:', error);
+      alert('계획을 생성하던 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
+  };
+
   return (
-    <LoadScript
-      googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
-      onLoad={() => {
-        setTimeout(() => navigate('/RecommendationPlan_noLogin'), 3000);
-      }}
-    >
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} onLoad={handleLoad}>
       <div className="loading-container">
         <div className="loading-content">
           <div className="earth-emoji">🌍</div>

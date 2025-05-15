@@ -78,7 +78,6 @@ function App() {
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/loading" element={<LoadingPage />} />
           <Route path="/nickname-setting" element={<NicknameSettingPage />} />
         </Route>
 
@@ -88,7 +87,8 @@ function App() {
           <Route path="/select-destination" element={<DestinationSelectPage />} />
           <Route path="/travel-type" element={<TravelTypeSelectPage />} />
           <Route path="/travel-date" element={<TravelDatePage />} />
-          <Route path="/RecommendationPlan_noLogin" element={<RecommendationPage />} />
+          <Route path="/loading" element={<LoadingPage />} />
+          <Route path="/RecommendationPlan" element={<RecommendationPage />} />
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/consumers/:consumerId/posts" element={<PostsPage />} />
           <Route path="/posts/:postId" element={<DetailedPostPage />} />

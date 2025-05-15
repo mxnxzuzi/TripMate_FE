@@ -5,6 +5,7 @@
   
   .loading-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 80vh;
@@ -42,5 +43,27 @@
     background-color: var(--main-color);
     border-radius: 20px;
     transition: width 0.2s ease;
+  }
+
+  .error-text {
+    font-size: 45px;
+    font-weight: 500;
+    margin: 8px 0;
+  }
+
+  .error-button {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 12px 36px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .error-button:hover {
+    background-color: var(--hover-color);
   }
   

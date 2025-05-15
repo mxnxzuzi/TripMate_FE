@@ -19,14 +19,14 @@ const dummyData = {
     { time: '13:30', name: '서울역사박물관', type: '전시/문화', desc: '서울의 과거와 현재를 한눈에 볼 수 있는 문화 공간' },
     { time: '15:30', name: '한강공원 반포지구', type: '자연/레저', desc: '시원한 강바람과 함께 자전거 타기와 산책을 즐길 수 있는 명소' },
     { time: '18:00', name: '더현대 서울', type: '쇼핑몰', desc: '최신 트렌드의 패션과 푸드를 한곳에서 경험할 수 있는 핫플레이스' },
-  ],  
+  ],
 };
 
 const roomId = "123";
 
 const mapContainerStyle = {
   width: '100%',
-  height: '290px', 
+  height: '290px',
 };
 const center = {
   lat: 37.5665,
@@ -36,6 +36,9 @@ const center = {
 const RecommendationPage = () => {
   const [selectedDay, setSelectedDay] = useState(1);
   const navigate = useNavigate();
+
+  const [editingPlace, setEditingPlace] = useState(null); // 클릭한 장소 정보
+  const [isEditOpen, setIsEditOpen] = useState(false); // 수정 창 표시 여부
 
   return (
     <div className="plan-page">
@@ -85,9 +88,8 @@ const RecommendationPage = () => {
       </div>
 
       <div className="btn-box">
-        <button className="btn">내 일정으로 저장</button>
+        <button className="btn" onClick={() => navigate('/rooms/:roomId')}>내 일정으로 저장</button>
         <button className="btn" onClick={() => navigate('/loading')}>새로운 추천받기</button>
-        <button className="btn" onClick={() => navigate(`/rooms/${roomId}/members`)}>동행자 초대하기</button>
       </div>
     </div>
   );

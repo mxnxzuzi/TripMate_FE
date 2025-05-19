@@ -222,11 +222,11 @@ const RoomPage = () => {
                             </>
                         )}
 
-                        <div className="btn-box">
+                        <div className="room-btn-box">
                             {!isEditing && (
                                 <>
-                                    <button className="btn" onClick={handleEdit}>수정</button>
-                                    <button className="btn" onClick={deletePlace}>삭제</button>
+                                    <button className="room-edit-btn" onClick={handleEdit}>수정</button>
+                                    <button className="room-delete-btn" onClick={deletePlace}>삭제</button>
                                 </>
                             )}
                         </div>

@@ -12,10 +12,6 @@
     font-family: 'Pretendard', sans-serif;
     max-width: 70vw;
     margin: 0 auto;
-    padding: 20px;
-    background-color: var(--bg-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .plan-title-box {
@@ -76,7 +72,6 @@
     max-height: 250px;
     overflow-y: auto;
     padding-right: 8px;
-    margin-top: 20px;
     margin-bottom: 10px;
 }
 
@@ -86,8 +81,8 @@
     position: relative;
     padding-left: 50px;
     padding: 12px;
-    border-bottom: 1px solid var(--border-color);
     cursor: pointer;
+    margin-bottom: 0px;
     transition: background-color 0.3s, transform 0.2s ease;
 }
 
@@ -131,7 +126,7 @@
 }
 
 .place {
-    margin-left: 16px;
+    margin-left: 50px;
     margin-top: -2px;
 }
 
@@ -152,9 +147,9 @@
     background-color: #f0f8ff;
 }
 
-.btn-box {
+.room-btn-box {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     gap: 12px;
     margin-bottom: 40px;
 }
@@ -207,9 +202,6 @@
     position: relative;
     padding: 20px;
     width: 40%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.1));
-    border-left: 2px solid var(--border-color);
-    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -242,7 +234,7 @@
 
 .side-panel .close-btn {
     position: absolute;
-    top: 10px;
+    top: 5px;
     right: 10px;
     background: transparent;
     border: none;
@@ -356,7 +348,6 @@
 }
 
 .comment-list li {
-    background-color: #f2f2f2;
     padding: 8px;
     border-radius: 5px;
     margin-bottom: 5px;
@@ -387,6 +378,8 @@
     list-style: none;
     padding: 0;
     margin-bottom: 10px;
+        padding-left: 10px;
+    padding-right: 10px;
 }
 
 .comment-item {
@@ -404,10 +397,10 @@
 }
 
 .comment-content {
-    background-color: #f5f5f5;
+    background-color: #ebf2ff;
     padding: 8px 12px;
     border-radius: 10px;
-    max-width: 80%;
+    width: 100%;
 }
 
 .comment-nickname {
@@ -421,5 +414,15 @@
     font-size: 14px;
 }
 
-
+.room-edit-btn,
+.room-delete-btn {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 

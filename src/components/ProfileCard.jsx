@@ -37,7 +37,6 @@ const ProfileCard = ({ onClose }) => {
         <p className="nickname">{userInfo.name}</p>
 
         <button className='selectBtn'>계정수정</button>
-        <button className='deleteBtn'>계정삭제</button>
         <hr />
         <div className="button-group">
           <button>내 코스</button>

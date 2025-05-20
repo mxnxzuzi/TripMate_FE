@@ -67,7 +67,10 @@ const RecommendationPage = () => {
     setPlacesByDay(grouped);
   }, [plan]);
 
-  if (!plan) return <div>잘못된 접근입니다.</div>;
+  if (!plan){
+    alert('일정 저장 중 오류가 발생했습니다. 다시 시도해 주세요.');
+    navigate('/');
+  }
 
   const selectedPlaces = [...(placesByDay[selectedDay] || [])].sort(
     (a, b) => new Date(a.time) - new Date(b.time)

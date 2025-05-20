@@ -31,17 +31,28 @@ const LoadingPage = () => {
   }, []);
 
   const handleLoad = async () => {
-    try {
-      const response = await axios.post('http://localhost:8080/plans', planData);
-      setTimeout(() => {
-        navigate('/RecommendationPlan', { state: { plan: response.data.result } });
-      }, 3000);
-    } catch (error) {
-      console.error('추천 실패:', error);
-      setHasError(true);
-      alert('계획을 생성하던 중 오류가 발생했습니다. 다시 시도해주세요.');
-    }
-  };
+  const token = localStorage.getItem('token'); //토큰 가져오기
+  if (!token) {
+    alert('로그인이 필요합니다.');
+    navigate('/login');
+    return;
+  }
+
+  try {
+    const response = await axios.post('http://localhost:8080/plans', planData,
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    );
+    setTimeout(() => {
+      navigate('/RecommendationPlan', { state: { plan: response.data.result } });
+    }, 3000);
+  } catch (error) {
+    console.error('추천 실패:', error);
+    setHasError(true);
+    alert('계획을 생성하던 중 오류가 발생했습니다. 다시 시도해주세요.');
+  }
+};
 
   if (hasError) {
     return (

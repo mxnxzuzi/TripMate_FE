@@ -54,6 +54,8 @@ const RecommendationPage = () => {
 
   const [selectedDay, setSelectedDay] = useState(1);
   const [placesByDay, setPlacesByDay] = useState({});
+  const [editingPlace, setEditingPlace] = useState(null);
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
   useEffect(() => {
     if (!plan?.places) return;
@@ -65,7 +67,10 @@ const RecommendationPage = () => {
     setPlacesByDay(grouped);
   }, [plan]);
 
-  if (!plan) return <div>잘못된 접근입니다.</div>;
+  if (!plan){
+    alert('일정 저장 중 오류가 발생했습니다. 다시 시도해 주세요.');
+    navigate('/');
+  }
 
   const selectedPlaces = [...(placesByDay[selectedDay] || [])].sort(
     (a, b) => new Date(a.time) - new Date(b.time)
@@ -99,9 +104,6 @@ const RecommendationPage = () => {
       alert('일정 저장 중 오류가 발생했습니다. 다시 시도해 주세요.');
     }
   };
-
-  const [editingPlace, setEditingPlace] = useState(null); // 클릭한 장소 정보
-  const [isEditOpen, setIsEditOpen] = useState(false); // 수정 창 표시 여부
 
   return (
     <div className="plan-page">

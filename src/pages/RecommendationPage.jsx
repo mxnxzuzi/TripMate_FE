@@ -54,8 +54,8 @@ const RecommendationPage = () => {
 
   const [selectedDay, setSelectedDay] = useState(1);
   const [placesByDay, setPlacesByDay] = useState({});
-  const [editingPlace, setEditingPlace] = useState(null);
-  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [editingPlace, setEditingPlace] = useState(null); // 클릭한 장소 정보
+  const [isEditOpen, setIsEditOpen] = useState(false); // 수정 창 표시 여부
 
   useEffect(() => {
     if (!plan?.places) return;
@@ -105,91 +105,91 @@ const RecommendationPage = () => {
     }
   };
 
-  return (
-    <div className="plan-page">
-      <div className="plan-title-box">
-        <h2 className="title">{plan.title}</h2>
-        <p className="info">
-          {plan.startDate.slice(0, 10)} ~ {plan.endDate.slice(0, 10)}<br />
-          {companionEnumMap[plan.companion]} | {
-            (() => {
-              const styles = plan.style?.map(s => styleEnumMap[s]) || [];
-              if (styles.length === 1) return styles[0];
-              if (styles.length > 1) return `${styles[0]} 외 ${styles.length - 1}개`;
-              return '';
-            })()
-          }
-        </p>
-      </div>
-
-      <div className="map-box">
-        <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
-          <GoogleMap
-            key={selectedDay}
-            mapContainerStyle={mapContainerStyle}
-            center={mapCenter}
-            zoom={15}
-          >
-            {selectedPlaces.map((place, idx) => (
-              <Marker
-                key={idx}
-                position={{ lat: place.latitude, lng: place.longitude }}
-                label={{ text: String(idx + 1), color: 'white' }}
-              />
-            ))}
-            {polylinePath.length > 1 && (
-              <Polyline
-                key={`polyline-${selectedDay}`}
-                path={polylinePath}
-                options={{
-                  strokeColor: '#888',
-                  strokeOpacity: 0.6,
-                  strokeWeight: 2,
-                  icons: [
-                    {
-                      icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, scale: 4 },
-                      offset: '0',
-                      repeat: '20px'
-                    }
-                  ]
-                }}
-              />
-            )}
-          </GoogleMap>
-        </LoadScript>
-      </div>
-
-      <div className="day-tabs">
-        {Object.keys(placesByDay).map(day => (
-          <button
-            key={day}
-            className={`tab ${selectedDay === Number(day) ? 'active' : ''}`}
-            onClick={() => setSelectedDay(Number(day))}
-          >
-            Day {day}
-          </button>
-        ))}
-      </div>
-
-      <div className="schedule-box">
-        {selectedPlaces.map((place, idx) => (
-          <div key={idx} className="schedule-item">
-            <div className="circle">{idx + 1}</div>
-            <div className="time">{place.time.slice(11, 16)}</div>
-            <div className="place">
-              <strong>{place.name}</strong>
-              <p className="type">{categoryEnumMap[place.category]}</p>
-              <p className="desc">{place.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="btn-box">
-        <button className="btn" onClick={handleSavePlan}>내 일정으로 저장</button>
-        <button className="btn" onClick={() => navigate('/loading')}>새로운 추천받기</button>
-      </div>
+return (
+  <div className="reco-plan-page">
+    <div className="reco-plan-title-box">
+      <h2 className="reco-title">{plan.title}</h2>
+      <p className="reco-info">
+        {plan.startDate.slice(0, 10)} ~ {plan.endDate.slice(0, 10)}<br />
+        {companionEnumMap[plan.companion]} | {
+          (() => {
+            const styles = plan.style?.map(s => styleEnumMap[s]) || [];
+            if (styles.length === 1) return styles[0];
+            if (styles.length > 1) return `${styles[0]} 외 ${styles.length - 1}개`;
+            return '';
+          })()
+        }
+      </p>
     </div>
+
+    <div className="reco-map-box">
+      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+        <GoogleMap
+          key={selectedDay}
+          mapContainerStyle={mapContainerStyle}
+          center={mapCenter}
+          zoom={15}
+        >
+          {selectedPlaces.map((place, idx) => (
+            <Marker
+              key={idx}
+              position={{ lat: place.latitude, lng: place.longitude }}
+              label={{ text: String(idx + 1), color: 'white' }}
+            />
+          ))}
+          {polylinePath.length > 1 && (
+            <Polyline
+              key={`polyline-${selectedDay}`}
+              path={polylinePath}
+              options={{
+                strokeColor: '#888',
+                strokeOpacity: 0.6,
+                strokeWeight: 2,
+                icons: [
+                  {
+                    icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, scale: 4 },
+                    offset: '0',
+                    repeat: '20px'
+                  }
+                ]
+              }}
+            />
+          )}
+        </GoogleMap>
+      </LoadScript>
+    </div>
+
+    <div className="reco-day-tabs">
+      {Object.keys(placesByDay).map(day => (
+        <button
+          key={day}
+          className={`reco-tab ${selectedDay === Number(day) ? 'reco-active' : ''}`}
+          onClick={() => setSelectedDay(Number(day))}
+        >
+          Day {day}
+        </button>
+      ))}
+    </div>
+
+    <div className="reco-schedule-box">
+      {selectedPlaces.map((place, idx) => (
+        <div key={idx} className="reco-schedule-item">
+          <div className="reco-circle">{idx + 1}</div>
+          <div className="reco-time">{place.time.slice(11, 16)}</div>
+          <div className="reco-place">
+            <strong>{place.name}</strong>
+            <p className="reco-type">{categoryEnumMap[place.category]}</p>
+            <p className="reco-desc">{place.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div className="reco-btn-box">
+      <button className="reco-btn" onClick={handleSavePlan}>내 일정으로 저장</button>
+      <button className="reco-btn" onClick={() => navigate('/loading')}>새로운 추천받기</button>
+    </div>
+  </div>
   );
 };
 

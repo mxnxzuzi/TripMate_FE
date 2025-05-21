@@ -63,7 +63,7 @@ const DetailedPostPage = () => {
             id: result.writerId,
             nickname: result.nickname,
             avatar: result.profile
-              ? `http://localhost:8080/${result.profile}`
+              ? `${result.profile}`
               : '/images/default-profile.webp',
           },
         });

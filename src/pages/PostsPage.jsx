@@ -40,7 +40,7 @@ const CommunityPostsPage = () => {
       user: {
         id: post.writerId,
         nickname: post.nickname,
-        avatar: post.profile ? `http://localhost:8080/${post.profile}` : '/images/default-profile.webp',
+        avatar: post.profile ? `${post.profile}` : '/images/default-profile.webp',
       },
     }));
   };

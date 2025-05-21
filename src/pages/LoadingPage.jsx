@@ -31,19 +31,9 @@ const LoadingPage = () => {
   }, []);
 
   const handleLoad = async () => {
-  const token = localStorage.getItem('token'); //토큰 가져오기
-  if (!token) {
-    alert('로그인이 필요합니다.');
-    navigate('/login');
-    return;
-  }
 
   try {
-    const response = await axios.post('http://localhost:8080/plans', planData,
-      {
-        headers: { Authorization: `Bearer ${token}` }
-      }
-    );
+    const response = await axios.post('http://localhost:8080/plans', planData);
     setTimeout(() => {
       navigate('/RecommendationPlan', { state: { plan: response.data.result } });
     }, 3000);

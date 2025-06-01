@@ -23,7 +23,7 @@ const CommunityPostsPage = () => {
       axios.get('http://localhost:8080/consumers/me', {
         headers: { Authorization: `Bearer ${token}` },
       })
-        .then((res) => setCurrentUserId(res.data.id))
+        .then((res) => setCurrentUserId(res.data.result.id))
         .catch(() => console.error('유저 정보를 불러오는 데 실패했습니다.'));
     } else {
       setCurrentUserId(0);

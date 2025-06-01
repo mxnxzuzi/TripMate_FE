@@ -36,7 +36,25 @@
     background-color: #f6f6f6;
     min-width: 170px;
     border-right: 1px solid #ddd;
+
+    max-height: 510px; /* 높이를 destination-box에 맞춰서! */
+    overflow-y: auto; /* 스크롤 가능하게! */
   }
+
+  /* country-list 스크롤바 스타일 */
+  .country-list::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .country-list::-webkit-scrollbar-thumb {
+    background-color: rgba(190, 190, 190, 0.2);
+    border-radius: 3px;
+  }
+
+  .country-list::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
   
   .country-button {
     padding: 20px;
@@ -68,7 +86,25 @@
     flex: 1;
     background-color: #fff;
     align-content: start;
+
+    max-height: 510px; /* destination-box 높이에 맞춤 */
+    overflow-y: auto; /* 스크롤 가능 */
   }
+
+  /* 깔끔한 스크롤바 스타일 (선택 사항) */
+  .region-list::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .region-list::-webkit-scrollbar-thumb {
+    background-color: rgba(190, 190, 190, 0.2);
+    border-radius: 3px;
+  }
+
+  .region-list::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
   
   .region-item {
     margin-left: 50px;

@@ -18,14 +18,14 @@ const styleEnumMap = {
   '힐링 여행': 'HEALING',
   'SNS 핫플레이스': 'HOT_PLACE',
   '맛집 탐방': 'FOOD_TOUR',
-  '지역 축제': 'LOCAL_FESTIVAL',
   '액티비티 여행': 'ACTIVITY',
+  '유명 관광지': 'TOURIST_SPOT',
   '쇼핑 · 도시 여행': 'CITY_TOUR',
   '해양 스포츠': 'MARINE_SPORTS',
   '로드 트립': 'ROAD_TRIP',
   '자연 탐험': 'NATURE',
   '문화 · 역사': 'CULTURE_HISTORY',
-  '유명 관광지': 'TOURIST_SPOT'
+  '지역 축제': 'LOCAL_FESTIVAL'
 };
 
 const companionOptions = Object.keys(companionEnumMap);

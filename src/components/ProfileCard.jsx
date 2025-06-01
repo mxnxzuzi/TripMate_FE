@@ -151,12 +151,16 @@ const ProfileCard = ({ onClose }) => {
               placeholder="이메일"
             />
             <button
-              className="editSaveBtn"
-              onClick={handleSave}
-              disabled={!nicknameChecked} 
-            >
-              저장
+                  className="editSaveBtn"
+                  onClick={handleSave}
+                  disabled={
+                    // 닉네임이 바뀌었는데 중복확인 안 했으면 비활성화
+                    formData.nickname !== userInfo.nickname && !nicknameChecked
+                  }
+                >
+                  저장
             </button>
+
           </>
         ) : (
           <>

@@ -38,7 +38,7 @@ const DetailedPostPage = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((res) => res.json())
-        .then((data) => setCurrentUserId(data.id))
+        .then((data) => setCurrentUserId(data.result.id))
         .catch(() => console.error('유저 정보 불러오기 실패'));
     }
   }, []);

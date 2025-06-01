@@ -27,19 +27,27 @@ function App() {
     const params = new URLSearchParams(window.location.search);
     const tokenFromURL = params.get("token");
     const tokenFromStorage = localStorage.getItem("token");
-  
     const token = tokenFromURL || tokenFromStorage;
-  
+
     if (token && token.split('.').length === 3) {
       localStorage.setItem("token", token);
-  
+
       axios.get("http://localhost:8080/consumers/me", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        setUserInfo(res.data);
-        setIsLoggedIn(true);
-        window.history.replaceState({}, document.title, "/");
+        console.log("✅ /me 응답:", res.data);
+
+        // 🚨 여기! result만 저장
+        if (res.data.isSuccess && res.data.result) {
+          setUserInfo(res.data.result); // result만!
+          setIsLoggedIn(true);
+          window.history.replaceState({}, document.title, "/");
+        } else {
+          alert("로그인이 필요한 페이지입니다.");
+          localStorage.removeItem("token");
+          setIsLoggedIn(false);
+        }
       })
       .catch(() => {
         alert("사용자 정보를 불러올 수 없습니다.");
@@ -48,28 +56,8 @@ function App() {
       });
     }
   }, []);
+
   
-  
-
-  const fetchUserInfo = async (token) => {
-    try {
-      const res = await fetch("http://localhost:8080/consumers/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!res.ok) throw new Error("유저 정보 불러오기 실패");
-
-      const data = await res.json();
-      setUserInfo(data);
-    } catch (err) {
-      console.error("사용자 정보 가져오기 실패:", err);
-      localStorage.removeItem("token");
-      setIsLoggedIn(false);
-      setUserInfo(null);
-    }
-  };
 
 
   return (

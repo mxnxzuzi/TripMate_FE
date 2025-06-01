@@ -18,12 +18,14 @@ const LoadingPage = () => {
           clearInterval(interval);
           return 100;
         }
-        return prev + 1.5;
+        return prev + 0.3; 
       });
-    }, 50);
+    }, 50); 
 
     return () => clearInterval(interval);
   }, []);
+
+
 
   // 컴포넌트 마운트 시 handleLoad 호출
   useEffect(() => {

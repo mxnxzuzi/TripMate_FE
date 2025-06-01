@@ -20,25 +20,26 @@ const SignupPage = () => {
     e.preventDefault();
     setMessage('');
 
-    // 1. 닉네임 중복 체크
-    const nicknameCheckRes = await axios.get(`/consumers/check-nickname`, {
-      params: { nickname }
-    });
-    if (nicknameCheckRes.data.exists) {
-      setMessage('이미 사용 중인 닉네임입니다.');
-      return;
-    }
-
-    // 2. 이메일 중복 체크
-    const emailCheckRes = await axios.get(`/consumers/check-email`, {
-      params: { email }
-    });
-    if (emailCheckRes.data.exists) {
-      setMessage('이미 사용 중인 이메일입니다.');
-      return;
-    }
-
     try {
+      // 🚨 닉네임 중복체크 (result.exists로 수정!)
+      const nicknameCheckRes = await axios.get(`/consumers/check-nickname`, {
+        params: { nickname }
+      });
+      if (nicknameCheckRes.data.result.exists) {
+        setMessage('이미 사용 중인 닉네임입니다.');
+        return;
+      }
+
+      // 🚨 이메일 중복체크 (result.exists로 수정!)
+      const emailCheckRes = await axios.get(`/consumers/check-email`, {
+        params: { email }
+      });
+      if (emailCheckRes.data.result.exists) {
+        setMessage('이미 사용 중인 이메일입니다.');
+        return;
+      }
+
+      // 회원가입 요청
       const response = await axios.post('/consumers/register', {
         email,
         password,
@@ -103,23 +104,23 @@ const SignupPage = () => {
       </div>
 
       <div className="social-signup">
-      <img
-            src="/images/google.png"
-            alt="Google 로그인"
-            onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/google'}
-            style={{ cursor: 'pointer' }}
+        <img
+          src="/images/google.png"
+          alt="Google 로그인"
+          onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/google'}
+          style={{ cursor: 'pointer' }}
         />
         <img
-            src="/images/naver.png"
-            alt="Naver 로그인"
-            onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/naver'}
-            style={{ cursor: 'pointer' }}
+          src="/images/naver.png"
+          alt="Naver 로그인"
+          onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/naver'}
+          style={{ cursor: 'pointer' }}
         />
         <img
-            src="/images/kakao.png"
-            alt="Kakao 로그인"
-            onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/kakao'}
-            style={{ cursor: 'pointer' }}
+          src="/images/kakao.png"
+          alt="Kakao 로그인"
+          onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/kakao'}
+          style={{ cursor: 'pointer' }}
         />
       </div>
     </div>

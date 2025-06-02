@@ -177,8 +177,8 @@ const ProfileCard = ({ onClose }) => {
         <hr />
         <div className="button-group">
           <button>내 코스</button>
-          <button>좋아요 누른 게시물</button>
-          <button>내 글</button>
+          <button onClick={() => navigate('/posts/likes')}>좋아요 누른 게시물</button>
+          <button onClick={() => navigate('/posts/mine')}>내 글</button>
         </div>
       </div>
     </div>

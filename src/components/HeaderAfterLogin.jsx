@@ -15,10 +15,15 @@ const HeaderAfterLogin = ({ setIsLoggedIn, userInfo }) => {
         navigate('/');
     };
 
+    const handleCommunityClick = () => {
+        navigate('/posts'); // CommunityPostsPage의 경로로 이동
+    };
+
     return (
     <header className="header">
         <Link to="/" className="logo">TripMate</Link>
         <div className="auth-links">
+        <button className="comm" onClick={handleCommunityClick}>커뮤니티</button>
         <button className="mypage" onClick={() => setShowProfile(true)}>마이페이지</button>
         <button className="logout-button" onClick={handleLogout}>로그아웃</button>
         </div>

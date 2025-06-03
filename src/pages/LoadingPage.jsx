@@ -20,7 +20,7 @@ const LoadingPage = () => {
         }
         return prev + 0.3; 
       });
-    }, 50); 
+    }, 100); 
 
     return () => clearInterval(interval);
   }, []);

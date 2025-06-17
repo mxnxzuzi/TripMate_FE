@@ -17,7 +17,10 @@ const HeaderAfterLogin = ({ setIsLoggedIn, userInfo }) => {
 
     return (
     <header className="header">
-        <Link to="/" className="logo">TripMate</Link>
+        <div className="nav-links">
+            <Link to="/" className="logo">TripMate</Link>
+            <Link to="/posts" className="post-link">여행 기록</Link>
+        </div>
         <div className="auth-links">
         <button className="mypage" onClick={() => setShowProfile(true)}>마이페이지</button>
         <button className="logout-button" onClick={handleLogout}>로그아웃</button>

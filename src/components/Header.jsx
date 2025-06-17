@@ -4,7 +4,10 @@ import '../styles/Header.css';
 const Header = () => {
   return (
     <header className="header">
-      <Link to="/" className="logo">TripMate</Link>
+      <div className="nav-links">
+        <Link to="/" className="logo">TripMate</Link>
+        <Link to="/posts" className="post-link">여행 기록</Link>
+      </div>
       <div className="auth-links">
         <Link to="/login">로그인</Link>
         <Link to="/signup">회원가입</Link>

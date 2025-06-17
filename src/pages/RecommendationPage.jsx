@@ -92,13 +92,20 @@ const RecommendationPage = () => {
     }
 
     try {
+      const planId = plan?.planId;
+      if (!planId) throw new Error("planId가 없습니다");
+      
       //계획 저장 API에 맞게 수정하기
-      await axios.post(
-        'http://localhost:8080/rooms',
-        plan,
+      const roomRes = await axios.post(
+        `http://localhost:8080/rooms?planId=${planId}`,
+        null,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      navigate('/mypage'); //요청 성공 시 이동
+
+      const roomId = roomRes.data?.result?.roomId;
+      if (!roomId) throw new Error("roomId가 없습니다");
+
+      navigate(`/rooms/${roomId}`); //요청 성공 시 이동
     } catch (error) {
       console.error('일정 저장 실패:', error);
       alert('일정 저장 중 오류가 발생했습니다. 다시 시도해 주세요.');

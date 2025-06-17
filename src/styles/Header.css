@@ -10,12 +10,29 @@
     background-color: #ffffff;
     font-family: 'Pretendard', sans-serif;
   }
-  
+
   .logo {
     font-size: 24px;
     font-weight: bold;
     color: var(--main-color);
     text-decoration: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 50px; /* 로고와 여행기록 사이 간격 */
+    align-items: center;
+  }
+
+  .post-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.2s;
+  }
+
+  .post-link:hover {
+    color: var(--main-color);
   }
   
   .auth-links {

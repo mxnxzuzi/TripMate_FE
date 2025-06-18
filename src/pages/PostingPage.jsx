@@ -2,17 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/PostingPage.css';
 
-const dummyPlans = [
-  { id: 1, title: '대구 여행 test' },
-  { id: 2, title: '서울/1박 2일(2024.11.12~2024.11.14)' },
-  { id: 3, title: '파리/5박 6일(2024.06.01~2024.06.05)' },
-];
-
 const PostingPage = ({ isEdit = false }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const post = location.state?.post;
 
+  const [plansFromServer, setPlansFromServer] = useState([]);
   const [selectedPlan, setSelectedPlan] = useState(() =>
     post && post.plan ? { id: post.plan.planId, title: post.plan.title } : { id: '', title: '' }
   );
@@ -21,23 +16,56 @@ const PostingPage = ({ isEdit = false }) => {
   const [content, setContent] = useState('');
   const [isInitialized, setIsInitialized] = useState(false);
 
+  // 🔸 일정 목록 불러오기 (GET /rooms)
+  useEffect(() => {
+    const fetchPlans = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:8080/rooms', {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(await response.text());
+        }
+
+        const data = await response.json();
+        const plans = data.result.map((room) => ({
+          id: room.plan.planId,
+          title: room.plan.title,
+        }));
+
+        setPlansFromServer(plans);
+      } catch (err) {
+        console.error('📛 일정 목록 불러오기 실패:', err);
+        alert('일정 목록을 불러오는 데 실패했습니다.');
+      }
+    };
+
+    fetchPlans();
+  }, []);
+
+  // 🔸 수정 모드 초기화
   useEffect(() => {
     if (isEdit && post && !isInitialized) {
-      const matchedPlan = dummyPlans.find((plan) => plan.id == post.plan?.planId);
+      const matchedPlan = plansFromServer.find((plan) => plan.id == post.plan?.planId);
       if (matchedPlan) {
         setSelectedPlan({ id: matchedPlan.id, title: matchedPlan.title });
       }
       setTitle(post.title || '');
       setContent(post.text || '');
 
-      const existingImages = post.images.map(img => ({
+      const existingImages = post.images.map((img) => ({
         url: `http://localhost:8080${img.storedPath}`,
         name: img.originalFilename,
       }));
       setImageFiles(existingImages);
       setIsInitialized(true);
     }
-  }, [isEdit, post, isInitialized]);
+  }, [isEdit, post, isInitialized, plansFromServer]);
 
   const addPostImage = (e) => {
     const newFiles = Array.from(e.target.files);
@@ -61,27 +89,23 @@ const PostingPage = ({ isEdit = false }) => {
     formData.append('content', content);
     if (selectedPlan.id) formData.append('planId', selectedPlan.id);
 
-    // 업데이트 전용 처리
     if (isEdit) {
       const deleteImageIds = post.images
         .filter((img) =>
-          !imageFiles.some((f) =>
-            !(f instanceof File) && f.url === `http://localhost:8080${img.storedPath}`
+          !imageFiles.some(
+            (f) => !(f instanceof File) && f.url === `http://localhost:8080${img.storedPath}`
           )
         )
         .map((img) => img.id);
 
       const newImageFiles = imageFiles.filter((file) => file instanceof File);
-
       newImageFiles.forEach((file) => {
         formData.append('newImages', file);
       });
-
       deleteImageIds.forEach((id) => {
         formData.append('deleteImageIds', id);
       });
     } else {
-      // 생성일 경우에는 그냥 images로 전송
       imageFiles.forEach((file) => {
         if (file instanceof File) {
           formData.append('images', file);
@@ -123,13 +147,13 @@ const PostingPage = ({ isEdit = false }) => {
           value={selectedPlan.id}
           onChange={(e) => {
             const selectedId = e.target.value;
-            const foundPlan = dummyPlans.find((plan) => String(plan.id) === selectedId);
+            const foundPlan = plansFromServer.find((plan) => String(plan.id) === selectedId);
             setSelectedPlan(foundPlan ? { id: String(foundPlan.id), title: foundPlan.title } : { id: '', title: '' });
           }}
           className="dropdown"
         >
           <option value="">일정 선택</option>
-          {dummyPlans.map((plan) => (
+          {plansFromServer.map((plan) => (
             <option key={plan.id} value={String(plan.id)}>
               {plan.title}
             </option>

@@ -39,7 +39,6 @@ function App() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log("✅ /me 응답:", res.data);
 
         // 🚨 여기! result만 저장
         if (res.data.isSuccess && res.data.result) {

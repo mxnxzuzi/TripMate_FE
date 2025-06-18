@@ -20,7 +20,7 @@ function InvitePage() {
             try {
                 const response = await axios.post(
                     `http://localhost:8080/api/rooms/${roomId}/members`,
-                    {}, // POST body가 없다면 빈 객체로
+                    {},
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -30,7 +30,6 @@ function InvitePage() {
                 );
 
                 if (response.status === 200) {
-                    // 성공적으로 멤버 추가됨
                     navigate(`/rooms/${roomId}`);
                 } else {
                     throw new Error("방 참여에 실패했습니다.");

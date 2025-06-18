@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/LoginPage.css';
 
@@ -8,6 +8,8 @@ const LoginPage = ({ setIsLoggedIn, setUserInfo }) => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirect = searchParams.get("redirect");
 
   useEffect(() => {
     axios.defaults.baseURL = 'http://localhost:8080';
@@ -28,7 +30,7 @@ const LoginPage = ({ setIsLoggedIn, setUserInfo }) => {
       localStorage.setItem("token", token);
       setIsLoggedIn(true);
       setUserInfo({ id, name, nickname, email: userEmail, profile, nicknameSet });
-      navigate('/');
+      navigate(redirect ?? '/');
     } catch (error) {
       console.error('로그인 실패:', error);
       setErrorMessage('이메일 또는 비밀번호가 잘못되었습니다.');

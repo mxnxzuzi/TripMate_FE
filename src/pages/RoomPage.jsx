@@ -134,37 +134,46 @@ const RoomPage = () => {
     const handleAddComment = async () => {
         if (!newComment.trim() || !selectedPlace) return;
 
-        try {
-            // 1. 댓글 등록 요청
-            await axios.post(
-                `http://localhost:8080/rooms/${roomId}/places/${selectedPlace.placeId}/comments`,
-                { content: newComment.trim() },
-                { headers: { Authorization: `Bearer ${token}` } }
-            );
-
-            // 2. 댓글 목록 다시 불러오기
-            const res = await axios.get(
-                `http://localhost:8080/rooms/${roomId}/places/${selectedPlace.placeId}/comments`,
-                { headers: { Authorization: `Bearer ${token}` } }
-            );
-
-            // 3. 기존 구조 유지: key를 selectedPlace.name으로 저장
-            const key = selectedPlace.name;
-            setComments(prev => ({
-                ...prev,
-                [key]: res.data.data // 서버 응답이 data 안에 있을 때
-            }));
-
-            // 4. 입력창 비우기
-            setNewComment('');
-        } catch (err) {
-            console.error("댓글 등록 오류:", err);
-            alert("댓글 등록에 실패했습니다.");
+try {
+    // 1. 댓글 등록 요청
+    await axios.post(
+        `http://localhost:8080/comments`,
+        {
+            placeId: selectedPlace.placeId,
+            content: newComment.trim()
+        },
+        {
+            headers: { Authorization: `Bearer ${token}` }
         }
+    );
+
+    // 2. 댓글 목록 다시 불러오기
+    const res = await axios.get(
+        `http://localhost:8080/comments`,
+        {
+            params: { placeId: selectedPlace.placeId },
+            headers: { Authorization: `Bearer ${token}` }
+        }
+    );
+
+    // 3. 기존 구조 유지: key를 selectedPlace.name으로 저장
+    const key = selectedPlace.name;
+    setComments(prev => ({
+        ...prev,
+        [key]: res.data.result
+    }));
+    console.log("댓글 응답:", res.data);
+    // 4. 입력창 비우기
+    setNewComment('');
+} catch (err) {
+    console.error("댓글 등록 오류:", err);
+    alert("댓글 등록에 실패했습니다.");
+}
+
     };
 
     // 장소 선택
-    const handleSelectPlace = item => {
+    const handleSelectPlace = async (item) => {
         const id = item.placeId || item.id || item.someOtherIdField;
 
         const formatted = {
@@ -176,7 +185,21 @@ const RoomPage = () => {
         setNewPlace(formatted);
         setIsVisible(true);
         setIsEditing(false);
+
+        try {
+            const res = await axios.get(`http://localhost:8080/comments`, {
+                params: { placeId: formatted.placeId },
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setComments(prev => ({
+                ...prev,
+                [formatted.placeId]: res.data.result
+            }));
+        } catch (err) {
+            console.error("댓글 가져오기 실패:", err);
+        }
     };
+
 
 
     console.log('선택한 장소 변경됨:', selectedPlace);
@@ -452,12 +475,12 @@ const RoomPage = () => {
                             <div className="comment-section">
                                 <h4>댓글</h4>
                                 <ul className="comment-list">
-                                    {(comments[selectedPlace.name] || []).map((comment, idx) => (
+                                    {(comments[selectedPlace.placeId] || []).map((comment, idx) => (
                                         <li key={idx} className="comment-item">
                                             <img src={comment.profileImg} alt="프로필" className="comment-avatar"/>
                                             <div className="comment-content">
                                                 <span className="comment-nickname">{comment.nickname}</span>
-                                                <p className="comment-text">{comment.text}</p>
+                                                <p className="comment-text">{comment.content}</p>
                                             </div>
                                         </li>
                                     ))}

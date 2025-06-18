@@ -17,28 +17,28 @@ const ProfileCard = ({ onClose }) => {
     axios.get("http://localhost:8080/consumers/me", {
       headers: { Authorization: `Bearer ${token}` },
     })
-    .then((res) => {
+        .then((res) => {
 
-      const userData = res.data.result;
-      if (!userData) {
-        console.error("❌ 사용자 정보가 없습니다.", res.data);
-        alert("로그인이 필요한 페이지입니다.");
-        navigate("/login");
-        return;
-      }
+          const userData = res.data.result;
+          if (!userData) {
+            console.error("❌ 사용자 정보가 없습니다.", res.data);
+            alert("로그인이 필요한 페이지입니다.");
+            navigate("/login");
+            return;
+          }
 
-      setUserInfo(userData);
-      setFormData({
-        nickname: userData.nickname || '',
-        email: userData.email || '',
-        profileImage: null,
-      });
-      setPreviewImage(userData.profile);
-    })
-    .catch((err) => {
-      console.error("❌ 사용자 정보 가져오기 실패", err);
-      alert("사용자 정보를 가져오는 중 오류가 발생했습니다.");
-    });
+          setUserInfo(userData);
+          setFormData({
+            nickname: userData.nickname || '',
+            email: userData.email || '',
+            profileImage: null,
+          });
+          setPreviewImage(userData.profile);
+        })
+        .catch((err) => {
+          console.error("❌ 사용자 정보 가져오기 실패", err);
+          alert("사용자 정보를 가져오는 중 오류가 발생했습니다.");
+        });
   }, [navigate]);
 
   const handleEditClick = () => setEditMode(true);
@@ -112,76 +112,76 @@ const ProfileCard = ({ onClose }) => {
   if (!userInfo) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="profile-card" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-overlay" onClick={onClose}>
+        <div className="profile-card" onClick={(e) => e.stopPropagation()}>
 
-        <button className="close-btn" onClick={onClose}>×</button>
+          <button className="close-btn" onClick={onClose}>×</button>
 
-        {editMode ? (
-          <>
-            {previewImage && (
-              <img src={previewImage} alt="미리보기" className="profile-image" />
-            )}
-            <input className="p-file" type="file" accept="image/*" onChange={handleImageChange} />
-            <div style={{ display: "flex" }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          {editMode ? (
+              <>
+                {previewImage && (
+                    <img src={previewImage} alt="미리보기" className="profile-image" />
+                )}
+                <input className="p-file" type="file" accept="image/*" onChange={handleImageChange} />
+                <div style={{ display: "flex" }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <input
+                        className="p-edit"
+                        type="text"
+                        name="nickname"
+                        value={formData.nickname}
+                        onChange={handleChange}
+                        placeholder="닉네임"
+                    />
+                    <button
+                        className="editSaveBtn"
+                        style={{ width: "100px", marginLeft: "10px", marginBottom: "20px" }}
+                        onClick={checkNickname}
+                    >
+                      중복확인
+                    </button>
+                  </div>
+                </div>
                 <input
-                  className="p-edit"
-                  type="text"
-                  name="nickname"
-                  value={formData.nickname}
-                  onChange={handleChange}
-                  placeholder="닉네임"
+                    className="p-edit"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="이메일"
                 />
                 <button
-                  className="editSaveBtn"
-                  style={{ width: "100px", marginLeft: "10px", marginBottom: "20px" }}
-                  onClick={checkNickname}
-                >
-                  중복확인
-                </button>
-              </div>
-            </div>
-            <input
-              className="p-edit"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="이메일"
-            />
-            <button
-                  className="editSaveBtn"
-                  onClick={handleSave}
-                  disabled={
-                    // 닉네임이 바뀌었는데 중복확인 안 했으면 비활성화
-                    formData.nickname !== userInfo.nickname && !nicknameChecked
-                  }
+                    className="editSaveBtn"
+                    onClick={handleSave}
+                    disabled={
+                      // 닉네임이 바뀌었는데 중복확인 안 했으면 비활성화
+                        formData.nickname !== userInfo.nickname && !nicknameChecked
+                    }
                 >
                   저장
-            </button>
+                </button>
 
-          </>
-        ) : (
-          <>
-            <div className="p-box">
-              <img src={userInfo.profile} alt="프로필 이미지" className="profile-image" />
-              <h2>{userInfo.nickname}</h2>
-            </div>
-            <p className="email">{userInfo.email}</p>
-            <p className="nickname">{userInfo.name}</p>
-            <button className='selectBtn' onClick={handleEditClick}>계정수정</button>
-          </>
-        )}
+              </>
+          ) : (
+              <>
+                <div className="p-box">
+                  <img src={userInfo.profile} alt="프로필 이미지" className="profile-image" />
+                  <h2>{userInfo.nickname}</h2>
+                </div>
+                <p className="email">{userInfo.email}</p>
+                <p className="nickname">{userInfo.name}</p>
+                <button className='selectBtn' onClick={handleEditClick}>계정수정</button>
+              </>
+          )}
 
-        <hr />
-        <div className="button-group">
-          <button onClick={() => navigate('/mycourse')}>내 코스</button>
-          <button onClick={() => navigate('/posts/likes')}>좋아요 누른 게시물</button>
-          <button onClick={() => navigate('/posts/mine')}>내 글</button>
+          <hr />
+          <div className="button-group">
+            <button onClick={() => navigate('/mycourse')}>내 코스</button>
+            <button onClick={() => navigate('/posts/likes')}>좋아요 누른 게시물</button>
+            <button onClick={() => navigate('/posts/mine')}>내 글</button>
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 

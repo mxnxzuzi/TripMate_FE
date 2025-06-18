@@ -1,76 +1,110 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import PlanContext from '../context/PlanContext';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/LoadingPage.css';
+import '../styles/LoginPage.css';
 
-const LoadingPage = () => {
-  const { planData } = useContext(PlanContext);
+const LoginPage = ({ setIsLoggedIn, setUserInfo }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
-  const [progress, setProgress] = useState(0);
-  const [hasError, setHasError] = useState(false);
+  const [searchParams] = useSearchParams();
+  const redirect = searchParams.get("redirect");
 
-  // 로딩바 증가
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        return prev + 0.3; 
+    axios.defaults.baseURL = 'http://localhost:8080';
+  }, []);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setErrorMessage('');
+
+    try {
+      const response = await axios.post('/consumers/login', {
+        email,
+        password,
       });
-    }, 100); 
 
-    return () => clearInterval(interval);
-  }, []);
+      const { result } = response.data;
 
+      if (!result) {
+        throw new Error("로그인 실패: 서버 응답에 result가 없습니다.");
+      }
 
+      const { id, name, nickname, email: userEmail, token, nicknameSet, profile } = result;
 
-  // 컴포넌트 마운트 시 handleLoad 호출
-  useEffect(() => {
-    handleLoad();
-  }, []);
+      localStorage.setItem("token", token);
+      setIsLoggedIn(true);
+      setUserInfo({ id, name, nickname, email: userEmail, profile, nicknameSet });
+      console.log("redirect param:", redirect);
+      console.log("로그인 성공. redirecting to:", redirect ?? '/');
+      navigate(redirect ?? '/');
+    } catch (error) {
+      console.error('로그인 실패:', error);
+      setErrorMessage('이메일 또는 비밀번호가 잘못되었습니다.');
+    }
+  };
 
-  const handleLoad = async () => {
-
-  try {
-    const response = await axios.post('http://localhost:8080/plans', planData);
-    setTimeout(() => {
-      navigate('/RecommendationPlan', { state: { plan: response.data.result } });
-    }, 3000);
-  } catch (error) {
-    console.error('추천 실패:', error);
-    setHasError(true);
-    alert('계획을 생성하던 중 오류가 발생했습니다. 다시 시도해주세요.');
-  }
-};
-
-  if (hasError) {
-    return (
-      <div className="loading-container">
-        <div className="error-text">여행 일정 생성 중 오류가 발생했습니다 😢</div>
-        <br/>
-        <button className="error-button" onClick={() => navigate('/select-destination')}>뒤로가기</button>
-      </div>
-    );
-  }
 
   return (
-    <div className="loading-container">
-      <div className="loading-content">
-        <div className="earth-emoji">🌍</div>
-        <div className="loading-text">
-          <p>AI가 최적의 여행 일정을</p>
-          <p>생성하고 있어요</p>
-          <p>잠시만 기다려 주세요</p>
+      <div className="login-container">
+        <Link to="/" className="login-logo">TripMate</Link>
+        <h2 className="login-title">로그인</h2>
+
+        <form className="login-form" onSubmit={handleLogin}>
+          <input
+              type="email"
+              placeholder="이메일"
+              className="login-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+              type="password"
+              placeholder="비밀번호"
+              className="login-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+          />
+
+          {errorMessage && <p className="login-error">{errorMessage}</p>}
+
+          <button type="submit" className="login-button">로그인</button>
+        </form>
+
+        <Link to="#" className="forgot-password">비밀번호를 잊어버리셨나요?</Link>
+
+        <div className="signup-section">
+          계정이 없으신가요? <Link to="/signup" className="signup-link">회원가입</Link>
         </div>
-        <div className="progress-bar-bg">
-          <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
+
+        <div className="divider">
+          <hr /> <span>OR</span> <hr />
+        </div>
+
+        <div className="social-login">
+          <img
+              src="/images/google.png"
+              alt="Google 로그인"
+              onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/google'}
+              style={{ cursor: 'pointer' }}
+          />
+          <img
+              src="/images/naver.png"
+              alt="Naver 로그인"
+              onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/naver'}
+              style={{ cursor: 'pointer' }}
+          />
+          <img
+              src="/images/kakao.png"
+              alt="Kakao 로그인"
+              onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/kakao'}
+              style={{ cursor: 'pointer' }}
+          />
         </div>
       </div>
-    </div>
   );
 };
 
-export default LoadingPage;
+export default LoginPage;

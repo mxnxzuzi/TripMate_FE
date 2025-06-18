@@ -24,8 +24,8 @@ import MyCoursePage from './pages/MyCoursePage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState(null); 
-  
+  const [userInfo, setUserInfo] = useState(null);
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const tokenFromURL = params.get("token");
@@ -38,65 +38,65 @@ function App() {
       axios.get("http://localhost:8080/consumers/me", {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => {
-        console.log("✅ /me 응답:", res.data);
+          .then((res) => {
+            console.log("✅ /me 응답:", res.data);
 
-        // 🚨 여기! result만 저장
-        if (res.data.isSuccess && res.data.result) {
-          setUserInfo(res.data.result); // result만!
-          setIsLoggedIn(true);
-          window.history.replaceState({}, document.title, "/");
-        } else {
-          alert("로그인이 필요한 페이지입니다.");
-          localStorage.removeItem("token");
-          setIsLoggedIn(false);
-        }
-      })
-      .catch(() => {
-        alert("사용자 정보를 불러올 수 없습니다.");
-        localStorage.removeItem("token");
-        setIsLoggedIn(false);
-      });
+            // 🚨 여기! result만 저장
+            if (res.data.isSuccess && res.data.result) {
+              setUserInfo(res.data.result); // result만!
+              setIsLoggedIn(true);
+              window.history.replaceState({}, document.title, "/");
+            } else {
+              alert("로그인이 필요한 페이지입니다.");
+              localStorage.removeItem("token");
+              setIsLoggedIn(false);
+            }
+          })
+          .catch(() => {
+            alert("사용자 정보를 불러올 수 없습니다.");
+            localStorage.removeItem("token");
+            setIsLoggedIn(false);
+          });
     }
   }, []);
 
-  
+
 
 
   return (
-    <Router>
-      <Routes>
-        {/* AuthLayout (로그인/회원가입 페이지) */}
-        <Route element={<AuthLayout />}>
-          <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/nickname-setting" element={<NicknameSettingPage />} />
-        </Route>
+      <Router>
+        <Routes>
+          {/* AuthLayout (로그인/회원가입 페이지) */}
+          <Route element={<AuthLayout />}>
+            <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} setUserInfo={setUserInfo} />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/nickname-setting" element={<NicknameSettingPage />} />
+          </Route>
 
-        {/* 나머지 페이지들 (isLoggedIn 여부에 따라 MainLayout 또는 UserLayout) */}
-        <Route element={isLoggedIn ? <UserLayout userInfo={userInfo} setIsLoggedIn={setIsLoggedIn} /> : <MainLayout />}>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/select-destination" element={<DestinationSelectPage />} />
-          <Route path="/travel-type" element={<TravelTypeSelectPage />} />
-          <Route path="/travel-date" element={<TravelDatePage />} />
-          <Route path="/loading" element={<LoadingPage />} />
-          <Route path="/RecommendationPlan" element={<RecommendationPage />} />
-          <Route path="/posts" element={<PostsPage />} />
-          <Route path="/consumers/:consumerId/posts" element={<PostsPage />} />
-          <Route path="/posts/:postId" element={<DetailedPostPage />} />
-          <Route path="/posts/posting" element={<PostingPage isEdit={false} />} />
-          <Route path="/posts/:postId/edit" element={<PostingPage isEdit={true} />} />  
-          <Route path="/rooms/:roomId/members" element={<InvitePage />} />
-          <Route path="/rooms/:roomId" element={<RoomPage />} />
-          <Route path="/posts/likes" element={<MyLikedPostsPage />} />
-          <Route path="/posts/mine" element={<MyPostsPage />} />
-          <Route path="/mycourse" element={<MyCoursePage />} />
-        </Route>
+          {/* 나머지 페이지들 (isLoggedIn 여부에 따라 MainLayout 또는 UserLayout) */}
+          <Route element={isLoggedIn ? <UserLayout userInfo={userInfo} setIsLoggedIn={setIsLoggedIn} /> : <MainLayout />}>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/select-destination" element={<DestinationSelectPage />} />
+            <Route path="/travel-type" element={<TravelTypeSelectPage />} />
+            <Route path="/travel-date" element={<TravelDatePage />} />
+            <Route path="/loading" element={<LoadingPage />} />
+            <Route path="/RecommendationPlan" element={<RecommendationPage />} />
+            <Route path="/posts" element={<PostsPage />} />
+            <Route path="/consumers/:consumerId/posts" element={<PostsPage />} />
+            <Route path="/posts/:postId" element={<DetailedPostPage />} />
+            <Route path="/posts/posting" element={<PostingPage isEdit={false} />} />
+            <Route path="/posts/:postId/edit" element={<PostingPage isEdit={true} />} />
+            <Route path="/invite/:roomId" element={<InvitePage />} />
+            <Route path="/rooms/:roomId" element={<RoomPage />} />
+            <Route path="/posts/likes" element={<MyLikedPostsPage />} />
+            <Route path="/posts/mine" element={<MyPostsPage />} />
+            <Route path="/mycourse" element={<MyCoursePage />} />
+          </Route>
 
-        {/* 잘못된 경로면 메인으로 리다이렉트 */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </Router>
+          {/* 잘못된 경로면 메인으로 리다이렉트 */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Router>
   );
 }
 

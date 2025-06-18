@@ -20,19 +20,19 @@ const HeaderAfterLogin = ({ setIsLoggedIn, userInfo }) => {
     };
 
     return (
-    <header className="header">
-        <div className="nav-links">
-            <Link to="/" className="logo">TripMate</Link>
-            {/*<Link to="/posts" className="post-link">여행 기록</Link>*/}
-        </div>
-        <div className="auth-links">
-        <button className="comm" onClick={handleCommunityClick}>커뮤니티</button>
-        <button className="mypage" onClick={() => setShowProfile(true)}>마이페이지</button>
-        <button className="logout-button" onClick={handleLogout}>로그아웃</button>
-        </div>
-        {showProfile && <ProfileCard onClose={() => setShowProfile(false)} userInfo={userInfo} />}
-    </header>
-  );
+        <header className="header">
+            <div className="nav-links">
+                <Link to="/" className="logo">TripMate</Link>
+                {/*<Link to="/posts" className="post-link">여행 기록</Link>*/}
+            </div>
+            <div className="auth-links">
+                <button className="comm" onClick={handleCommunityClick}>커뮤니티</button>
+                <button className="mypage" onClick={() => setShowProfile(true)}>마이페이지</button>
+                <button className="logout-button" onClick={handleLogout}>로그아웃</button>
+            </div>
+            {showProfile && <ProfileCard onClose={() => setShowProfile(false)} userInfo={userInfo} />}
+        </header>
+    );
 };
 
 export default HeaderAfterLogin;

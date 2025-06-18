@@ -234,8 +234,6 @@ const RoomPage = () => {
                     }
                 }
             );
-
-            window.location.reload(); // 💡 새로고침 실행
         } catch (e) {
             console.error('수정 실패', e);
             alert('수정에 실패했습니다.');
@@ -311,13 +309,16 @@ const RoomPage = () => {
                         방 제목 : 
                         <input
                         type="text"
-                        value={newPlace?.roomName || roomData.name || ''}
+                        value={newPlace?.roomName !== undefined ? newPlace.roomName : (roomData.name || '')}
                         onChange={e => setNewPlace(prev => ({ ...prev, roomName: e.target.value }))}
                         />
                     </label>
 
                     <div className="edit-btn-box">
-                        <button className="btn save-btn" onClick={saveChanges}>저장</button>
+                        <button className="btn save-btn" onClick={async () => {
+                                                            await saveChanges();
+                                                            setRoomData(prev => ({...prev, name: newPlace.roomName || prev.name}));
+                                                        }}>저장</button>
                     </div>
                 </div>
             ) : (null)}
@@ -425,7 +426,9 @@ const RoomPage = () => {
                                         onChange={e => setNewPlace(prev => ({...prev, desc: e.target.value}))}/>
                                 </label>
                                 <div className="edit-btn-box">
-                                    <button className="btn save-btn" onClick={saveChanges}>저장</button>
+                                    <button className="btn save-btn" onClick={() => {(async () => {
+                                                                        await saveChanges();
+                                                                        window.location.reload();})();}}>저장</button>
                                 </div>
                             </div>
                         ) : (

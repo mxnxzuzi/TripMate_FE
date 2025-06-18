@@ -26,7 +26,7 @@ const MyCoursePage = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:8080/rooms", {
+        const response = await axios.get("http://localhost:8080/rooms/simple", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -35,9 +35,9 @@ const MyCoursePage = () => {
         const rooms = response.data.result.map((room) => {
           return {
             id: room.roomId, // ✅ roomId 저장
-            title: room.name || room.plan?.title || "제목 없음",
-            startDate: formatDate(room.plan?.startDate),
-            endDate: formatDate(room.plan?.endDate),
+            title: room.name || room.planTitle || "제목 없음",
+            startDate: formatDate(room.startDate), 
+            endDate: formatDate(room.endDate),     
           };
         });
 

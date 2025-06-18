@@ -287,7 +287,6 @@ const RoomPage = () => {
         }
     };
 
-
     return (
         <div className="plan-page">
             <div className="plan-title-box" onClick={() => setShowRoomEdit(prev => !prev)}>
@@ -306,9 +305,10 @@ const RoomPage = () => {
             </div>
 
             {showRoomEdit ? (
-                <div className="edit-form room-edit-box">
+                <div className="room-edit-box">
+                    <button className="close-btn" onClick={() => setShowRoomEdit(false)}>X</button>
                     <label>
-                        방 제목:
+                        방 제목 : 
                         <input
                         type="text"
                         value={newPlace?.roomName || roomData.name || ''}
@@ -321,7 +321,7 @@ const RoomPage = () => {
                     </div>
                 </div>
             ) : (null)}
-
+            <br/>
             <div className="map-box">
                 <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
                     <GoogleMap

@@ -6,9 +6,10 @@ const Header = () => {
     <header className="header">
       <div className="nav-links">
         <Link to="/" className="logo">TripMate</Link>
-        <Link to="/posts" className="post-link">여행 기록</Link>
+        {/*<Link to="/posts" className="post-link">여행 기록</Link>*/}
       </div>
       <div className="auth-links">
+        <Link to="/posts" className="post-link">커뮤니티</Link>
         <Link to="/login">로그인</Link>
         <Link to="/signup">회원가입</Link>
       </div>

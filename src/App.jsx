@@ -20,6 +20,7 @@ import axios from "axios";
 import RoomPage from "./pages/RoomPage";
 import MyLikedPostsPage from './pages/MyLikedPostsPage';
 import MyPostsPage from './pages/MyPostsPage';
+import MyCoursePage from './pages/MyCoursePage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -89,6 +90,7 @@ function App() {
           <Route path="/rooms/:roomId" element={<RoomPage />} />
           <Route path="/posts/likes" element={<MyLikedPostsPage />} />
           <Route path="/posts/mine" element={<MyPostsPage />} />
+          <Route path="/mycourse" element={<MyCoursePage />} />
         </Route>
 
         {/* 잘못된 경로면 메인으로 리다이렉트 */}

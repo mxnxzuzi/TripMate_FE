@@ -154,7 +154,7 @@ const PostingPage = ({ isEdit = false }) => {
         >
           <option value="">일정 선택</option>
           {plansFromServer.map((plan) => (
-            <option key={plan.id} value={String(plan.id)}>
+            <option key={plan.id} value={plan.id}>
               {plan.title}
             </option>
           ))}

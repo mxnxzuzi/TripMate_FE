@@ -296,12 +296,12 @@ try {
         }
     };
 
-    const inviteLink = `http://localhost:3000/invite/${roomId}`;
+    const invite = `TripMate\n당신을 여행 게획 방에 초대합니다.\n초대 코드 : ${roomId}`;
 
-    //초대 링크 복사
+    //초대 코드 복사
     const handleCopy = async () => {
         try {
-            await navigator.clipboard.writeText(inviteLink);
+            await navigator.clipboard.writeText(invite);
             setCopied(true);
         } catch (err) {
             alert("복사에 실패했습니다.");
@@ -502,7 +502,7 @@ try {
 
             <div className="btn-box">
                 <button className="btn" onClick={handleCopy}>
-                    {copied ? "링크가 복사되었습니다!" : "초대 링크 복사"}
+                    {copied ? "코드가 복사되었습니다!" : "초대 코드 복사"}
                 </button>
             </div>
         </div>

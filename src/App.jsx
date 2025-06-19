@@ -15,7 +15,6 @@ import PostsPage from './pages/PostsPage';
 import DetailedPostPage from './pages/DetailedPostPage';
 import PostingPage from './pages/PostingPage';
 import NicknameSettingPage from './pages/NicknameSettingPage';
-import InvitePage from './pages/InvitePage';
 import axios from "axios";
 import RoomPage from "./pages/RoomPage";
 import MyLikedPostsPage from './pages/MyLikedPostsPage';
@@ -59,8 +58,6 @@ function App() {
     }
   }, []);
 
-  
-
 
   return (
     <Router>
@@ -85,7 +82,6 @@ function App() {
           <Route path="/posts/:postId" element={<DetailedPostPage />} />
           <Route path="/posts/posting" element={<PostingPage isEdit={false} />} />
           <Route path="/posts/:postId/edit" element={<PostingPage isEdit={true} />} />
-          <Route path="/invite/:roomId" element={<InvitePage />} />
           <Route path="/rooms/:roomId" element={<RoomPage />} />
           <Route path="/posts/likes" element={<MyLikedPostsPage />} />
           <Route path="/posts/mine" element={<MyPostsPage />} />

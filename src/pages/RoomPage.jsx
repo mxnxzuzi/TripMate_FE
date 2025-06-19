@@ -63,15 +63,16 @@ const RoomPage = () => {
     const [newComment, setNewComment] = useState('');
     const [autocomplete, setAutocomplete] = useState(null);
 
-    const selectedPlaces = (roomData?.plan?.places || []).filter(p => p.latitude && p.longitude);
+    const selectedDayPlaces = (groupedData[selectedDay] || []).filter(p => p.latitude && p.longitude);
 
-    const mapCenter = selectedPlaces.length > 0
-        ? { lat: selectedPlaces[0].latitude, lng: selectedPlaces[0].longitude }
+    const mapCenter = selectedDayPlaces.length > 0
+        ? { lat: selectedDayPlaces[0].latitude, lng: selectedDayPlaces[0].longitude }
         : { lat: 37.5665, lng: 126.9780 };
 
-    const polylinePath = selectedPlaces
-        .filter(p => p.latitude && p.longitude)
-        .map(p => ({ lat: p.latitude, lng: p.longitude }));
+    const polylinePath = selectedDayPlaces.map(p => ({
+        lat: p.latitude,
+        lng: p.longitude
+    }));
 
     const [copied, setCopied] = useState(false);
 
@@ -353,33 +354,32 @@ try {
                         center={mapCenter}
                         zoom={15}
                     >
-                        {groupedData[selectedDay]
-                        ?.filter(p => p.latitude && p.longitude)
-                        .map((place, idx) => (
+                        {selectedDayPlaces.map((place, idx) => (
                             <Marker
-                            key={place.placeId}
-                            position={{ lat: place.latitude, lng: place.longitude }}
-                            label={{ text: `${idx + 1}`, color: 'white' }}
+                                key={place.placeId}
+                                position={{ lat: place.latitude, lng: place.longitude }}
+                                label={{ text: `${idx + 1}`, color: 'white' }}
                             />
-                        ))}
-                        {polylinePath.length > 1 && (
+                            ))}
+
+                            {polylinePath.length > 1 && (
                             <Polyline
                                 key={`polyline-${selectedDay}`}
                                 path={polylinePath}
                                 options={{
-                                    strokeColor: '#888',
-                                    strokeOpacity: 0.6,
-                                    strokeWeight: 2,
-                                    icons: [
-                                        {
-                                            icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, scale: 4 },
-                                            offset: '0',
-                                            repeat: '20px'
-                                        }
-                                    ]
+                                strokeColor: '#888',
+                                strokeOpacity: 0.6,
+                                strokeWeight: 2,
+                                icons: [
+                                    {
+                                    icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, scale: 4 },
+                                    offset: '0',
+                                    repeat: '20px'
+                                    }
+                                ]
                                 }}
                             />
-                        )}
+                            )}
                     </GoogleMap>
                 </LoadScript>
             </div>

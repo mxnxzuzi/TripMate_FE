@@ -38,20 +38,20 @@
 | 글 목록, 작성, 좋아요 | 나의 일정 / 좋아요한 게시글 |
 
 ### ➡️ 메인 페이지
-<img width="783" height="408" alt="Image" src="https://github.com/user-attachments/assets/99954af2-feb1-4416-bda2-1a66f6b01113" />
+<img width="1215" height="801" alt="Image" src="https://github.com/user-attachments/assets/70841718-0101-43b3-b1ea-3967f6978c36" />
 
 ### ➡️ 여행 생성 Flow
-<img width="785" height="407" alt="Image" src="https://github.com/user-attachments/assets/01e349af-2bf9-4dd5-ae0b-12ce848b2ba2" />
-<img width="785" height="402" alt="Image" src="https://github.com/user-attachments/assets/fb79f7f8-17f4-4b40-8f55-efe653a74146" />
-<img width="1137" height="582" alt="Image" src="https://github.com/user-attachments/assets/da61240d-e4ad-42ea-873e-fbfa9de9b761" />
-<img width="1132" height="576" alt="Image" src="https://github.com/user-attachments/assets/ef3e1922-eb16-437b-80c6-445c0911983d" />
+<img width="1212" height="820" alt="Image" src="https://github.com/user-attachments/assets/591dac41-7778-4f07-a44d-c8413c581afe" />
+<img width="1192" height="573" alt="Image" src="https://github.com/user-attachments/assets/9acc1b1d-1208-4966-b9d4-777652bb471f" />
+<img width="1212" height="717" alt="Image" src="https://github.com/user-attachments/assets/158a0fdd-b636-4a8d-83ce-fb5585b93dfc" />
+<img width="1182" height="849" alt="Image" src="https://github.com/user-attachments/assets/e0a39a42-c9d2-4713-b69a-149359c4edc6" />
 
 ### ➡️ 여행 계획 방
-<img width="839" height="582" alt="Image" src="https://github.com/user-attachments/assets/49cb7c24-fd1f-4fd3-92c6-ea66b7f24613" />
+<img width="2509" height="1315" alt="Image" src="https://github.com/user-attachments/assets/77fd6abb-dbfb-4b13-871e-2872933603a0" />
 
 ### ➡️ 게시판
-<img width="1135" height="591" alt="Image" src="https://github.com/user-attachments/assets/f2a7d3ed-673d-4841-8602-75f4bcb34a2d" />
-<img width="1102" height="595" alt="Image" src="https://github.com/user-attachments/assets/a803ada0-4102-4f2a-9dc6-ff4b902b8af9" />
+<img width="1783" height="1221" alt="Image" src="https://github.com/user-attachments/assets/bcaa592d-dbb3-4986-9f99-14abcbf2f309" />
+<img width="2529" height="1308" alt="Image" src="https://github.com/user-attachments/assets/d9bb8bfd-6989-4d65-a9b8-140a568e9663" />
 
 ### ➡️ 마이페이지
 <img width="720" height="391" alt="Image" src="https://github.com/user-attachments/assets/d2d8981e-b20a-4e74-84ae-b6de75ae7f51" />
